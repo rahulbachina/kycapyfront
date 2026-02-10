@@ -80,7 +80,7 @@ export function CaseForm({ defaultValues, onSubmit, isLoading, isEdit }: CaseFor
 
     return (
         <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 pb-12">
                 <Card>
                     <CardHeader>
                         <CardTitle>Case Information</CardTitle>
@@ -124,7 +124,7 @@ export function CaseForm({ defaultValues, onSubmit, isLoading, isEdit }: CaseFor
                                                 <SelectValue placeholder="Select business unit" />
                                             </SelectTrigger>
                                         </FormControl>
-                                        <SelectContent>
+                                        <SelectContent position="popper" sideOffset={4}>
                                             <SelectItem value="Ardonagh Specialty">Ardonagh Specialty</SelectItem>
                                             <SelectItem value="Price Forbes">Price Forbes</SelectItem>
                                             <SelectItem value="Bishopsgate">Bishopsgate</SelectItem>
@@ -146,7 +146,7 @@ export function CaseForm({ defaultValues, onSubmit, isLoading, isEdit }: CaseFor
                                                 <SelectValue placeholder="Select risk tier" />
                                             </SelectTrigger>
                                         </FormControl>
-                                        <SelectContent>
+                                        <SelectContent position="popper" sideOffset={4}>
                                             <SelectItem value="Lower Risk">Lower Risk</SelectItem>
                                             <SelectItem value="Higher Risk">Higher Risk</SelectItem>
                                         </SelectContent>
@@ -168,7 +168,7 @@ export function CaseForm({ defaultValues, onSubmit, isLoading, isEdit }: CaseFor
                                                     <SelectValue placeholder="Select status" />
                                                 </SelectTrigger>
                                             </FormControl>
-                                            <SelectContent>
+                                            <SelectContent position="popper" sideOffset={4}>
                                                 <SelectItem value="ONBOARDING_COMPLETE">Onboarding Complete</SelectItem>
                                                 <SelectItem value="AUTOMATION_IN_PROGRESS">Automation In Progress</SelectItem>
                                                 <SelectItem value="AWAITING_KYC_REVIEW">Awaiting KYC Review</SelectItem>
@@ -203,7 +203,7 @@ export function CaseForm({ defaultValues, onSubmit, isLoading, isEdit }: CaseFor
                                 <FormItem><FormLabel>Customer Type</FormLabel>
                                     <Select onValueChange={field.onChange} defaultValue={field.value}>
                                         <FormControl><SelectTrigger><SelectValue /></SelectTrigger></FormControl>
-                                        <SelectContent>
+                                        <SelectContent position="popper" sideOffset={4}>
                                             <SelectItem value="Micro">Micro</SelectItem>
                                             <SelectItem value="Small">Small</SelectItem>
                                             <SelectItem value="Medium">Medium</SelectItem>
