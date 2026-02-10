@@ -457,13 +457,18 @@ export default function CaseDetailPage() {
                                             <Button
                                                 variant="ghost"
                                                 size="sm"
-                                                asChild
+                                                onClick={() => {
+                                                    if (att.downloadUrl && att.downloadUrl.startsWith('http')) {
+                                                        window.open(att.downloadUrl, '_blank');
+                                                    } else {
+                                                        // If no valid download URL, show a message
+                                                        alert(`Download URL not available for ${att.fileName}`);
+                                                    }
+                                                }}
                                                 className="text-orange-600 hover:text-orange-700 hover:bg-orange-100"
                                             >
-                                                <a href={att.downloadUrl} target="_blank" rel="noopener noreferrer">
-                                                    <Download className="h-4 w-4 mr-2" />
-                                                    Download
-                                                </a>
+                                                <Download className="h-4 w-4 mr-2" />
+                                                Download
                                             </Button>
                                         </div>
                                     ))}
