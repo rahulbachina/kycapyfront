@@ -86,7 +86,7 @@ export const api = {
           // We stick to what we know is required logic in the UI
         } as any;
       }
-      const response = await client.get<CasesListResponse>('/api/cases', { params });
+      const response = await client.get<CasesListResponse>('/cases', { params });
 
       // Debug log to see actual API response
       console.log('[API] Raw response:', response.data);
@@ -123,11 +123,11 @@ export const api = {
       return response.data;
     },
     create: async (data: CaseCreate): Promise<any> => {
-      const response = await client.post('/api/cases', data);
+      const response = await client.post('/cases', data);
       return response.data;
     },
     get: async (id: string): Promise<Case> => {
-      const response = await client.get<Case>(`/api/cases/${id}`);
+      const response = await client.get<Case>(`/cases/${id}`);
       const data = response.data as any;
       if (data && !data.id && data._id) {
         data.id = data._id;
@@ -148,7 +148,7 @@ export const api = {
         }
         return { id, ...data };
       }
-      const response = await client.put(`/api/cases/${id}`, data);
+      const response = await client.put(`/cases/${id}`, data);
       return response.data;
     },
     delete: async (id: string): Promise<any> => {
@@ -160,7 +160,7 @@ export const api = {
         if (idx >= 0) MOCK_CASES.splice(idx, 1);
         return { success: true };
       }
-      const response = await client.delete(`/api/cases/${id}`);
+      const response = await client.delete(`/cases/${id}`);
       return response.data;
     },
     convertToPas: async (id: string, sentToRpaBy?: string): Promise<PASClientProcess> => {
@@ -168,7 +168,7 @@ export const api = {
         await mockDelay(1000);
         return { processId: 'pas-123', status: 'Queued' } as any;
       }
-      const response = await client.post(`/api/cases/${id}/convert-to-pas`, null, {
+      const response = await client.post(`/cases/${id}/convert-to-pas`, null, {
         params: { sentToRpaBy },
       });
       return response.data;
@@ -178,7 +178,7 @@ export const api = {
         await mockDelay(1000);
         return { success: true, message: 'Case sent to PAS queue' };
       }
-      const response = await client.post(`/api/cases/${id}/send-to-pas`, null, {
+      const response = await client.post(`/cases/${id}/send-to-pas`, null, {
         params: options,
       });
       return response.data;
