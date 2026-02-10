@@ -10,11 +10,9 @@ export type CasesListResponse = components['schemas']['CasesListResponse'];
 export type Attachment = components['schemas']['Attachment'];
 
 // Create Axios
-// Use proxy in production to avoid CORS, direct API in development
-// In development (localhost), use direct API. In production (Vercel), use proxy.
-const baseURL = process.env.NODE_ENV === 'development'
-  ? (process.env.NEXT_PUBLIC_API_BASE_URL ?? 'http://37.27.255.95:8090')
-  : '/api/proxy';
+// ALWAYS use proxy to avoid CORS issues in production
+// The proxy routes requests server-side to the backend API
+const baseURL = '/api/proxy';
 
 const client: AxiosInstance = axios.create({
   baseURL,
