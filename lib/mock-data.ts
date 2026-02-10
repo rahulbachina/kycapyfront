@@ -69,10 +69,10 @@ export const MOCK_CASE_DETAILS: Record<string, Case> = {
             bankDetailsRequired: false,
         },
         automationResults: {
-            companiesHouse: { status: 'success', lastChecked: new Date().toISOString() },
-            fca: { status: 'pending' },
-            dAndB: { status: 'pending' },
-            lexisNexis: { status: 'pending' },
+            companiesHouse: { status: 'success', data: null, message: null },
+            fca: { status: 'pending', data: null, message: null },
+            dAndB: { status: 'pending', data: null, message: null },
+            lexisNexis: { status: 'pending', data: null, message: null },
         },
         attachments: [],
     },
@@ -102,13 +102,22 @@ export const MOCK_CASE_DETAILS: Record<string, Case> = {
             bankDetailsRequired: true,
         },
         automationResults: {
-            companiesHouse: { status: 'success', lastChecked: new Date().toISOString() },
-            fca: { status: 'failed', message: 'Not found' },
-            dAndB: { status: 'success', lastChecked: new Date().toISOString() },
-            lexisNexis: { status: 'pending' },
+            companiesHouse: { status: 'success', data: null, message: null },
+            fca: { status: 'failed', data: null, message: 'Not found' },
+            dAndB: { status: 'success', data: null, message: null },
+            lexisNexis: { status: 'pending', data: null, message: null },
         },
         attachments: [
-            { id: 'att-1', fileName: 'ci_certificate.pdf', fileType: 'PDF', uploadedBy: 'system', uploadedAt: new Date().toISOString() }
+            {
+                id: 'att-1',
+                fileName: 'ci_certificate.pdf',
+                fileType: 'PDF',
+                source: 'manual',
+                uploadedAt: new Date().toISOString(),
+                uploadedBy: 'system',
+                downloadUrl: '#',
+                lastUpdatedAt: new Date().toISOString()
+            }
         ],
     },
 };
