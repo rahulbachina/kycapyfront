@@ -10,9 +10,9 @@ export type CasesListResponse = components['schemas']['CasesListResponse'];
 export type Attachment = components['schemas']['Attachment'];
 
 // Create Axios
-// ALWAYS use proxy to avoid CORS issues in production
-// The proxy routes requests server-side to the backend API
-const baseURL = '/api/proxy';
+// Use /api routes which act as proxy to backend
+// These are Next.js API routes that forward to the backend API
+const baseURL = '/api';
 
 const client: AxiosInstance = axios.create({
   baseURL,
