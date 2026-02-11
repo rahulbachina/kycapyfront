@@ -4,7 +4,6 @@ import { useCase, useDeleteCase } from "@/hooks/useCases"
 import { useParams, useRouter } from "next/navigation"
 import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { StatusBadge } from "@/components/cases/StatusBadge"
 import { RiskTierBadge } from "@/components/cases/RiskTierBadge"
@@ -191,10 +190,11 @@ export default function CaseDetailPage() {
                             </div>
                             <div>
                                 <h2 className="text-3xl font-bold tracking-tight bg-gradient-to-r from-gray-900 to-gray-600 bg-clip-text text-transparent">
-                                    {caseDetail.entityName}
+                                    {caseDetail.beForm?.legalName || caseDetail.entityName || 'Unknown Entity'}
                                 </h2>
                                 <div className="flex items-center gap-2 text-sm text-muted-foreground mt-1">
-                                    <span className="font-mono">ID: {caseDetail._id.substring(0, 12)}...</span>
+                                    <span className="font-mono">Case ID: {caseDetail.caseId || caseDetail._id?.substring(0, 12)}</span>
+                                    {caseDetail.clientRef && <span>• Client Ref: {caseDetail.clientRef}</span>}
                                 </div>
                             </div>
                         </div>
@@ -246,112 +246,78 @@ export default function CaseDetailPage() {
                 </div>
             </div>
 
-            {/* Tabs Section */}
-            <Tabs defaultValue="overview" className="space-y-6">
-                <TabsList className="bg-muted/50 p-1 h-auto gap-1">
-                    <TabsTrigger
-                        value="overview"
-                        className="data-[state=active]:bg-white data-[state=active]:shadow-sm data-[state=active]:text-blue-600 gap-2"
-                    >
-                        <TrendingUp className="h-4 w-4" />
-                        Overview
-                    </TabsTrigger>
-                    <TabsTrigger
-                        value="be-form"
-                        className="data-[state=active]:bg-white data-[state=active]:shadow-sm data-[state=active]:text-purple-600 gap-2"
-                    >
-                        <FileText className="h-4 w-4" />
-                        BE Form
-                    </TabsTrigger>
-                    <TabsTrigger
-                        value="automation"
-                        className="data-[state=active]:bg-white data-[state=active]:shadow-sm data-[state=active]:text-green-600 gap-2"
-                    >
-                        <CheckCircle2 className="h-4 w-4" />
-                        Automation Results
-                    </TabsTrigger>
-                    <TabsTrigger
-                        value="attachments"
-                        className="data-[state=active]:bg-white data-[state=active]:shadow-sm data-[state=active]:text-orange-600 gap-2"
-                    >
-                        <Download className="h-4 w-4" />
-                        Attachments
-                    </TabsTrigger>
-                </TabsList>
-
-                {/* Overview Tab */}
-                <TabsContent value="overview" className="space-y-6">
-                    <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-                        <Card className="border-l-4 border-l-blue-500 shadow-sm hover:shadow-md transition-shadow">
-                            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                                <CardTitle className="text-sm font-medium text-muted-foreground">
-                                    Business Unit
-                                </CardTitle>
-                                <Building2 className="h-4 w-4 text-blue-500" />
-                            </CardHeader>
-                            <CardContent>
-                                <div className="text-2xl font-bold">{caseDetail.businessUnit}</div>
-                            </CardContent>
-                        </Card>
-
-                        <Card className="border-l-4 border-l-purple-500 shadow-sm hover:shadow-md transition-shadow">
-                            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                                <CardTitle className="text-sm font-medium text-muted-foreground">
-                                    Assigned User
-                                </CardTitle>
-                                <User className="h-4 w-4 text-purple-500" />
-                            </CardHeader>
-                            <CardContent>
-                                <div className="text-2xl font-bold">{caseDetail.assignedUser}</div>
-                            </CardContent>
-                        </Card>
-
-                        <Card className="border-l-4 border-l-green-500 shadow-sm hover:shadow-md transition-shadow">
-                            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                                <CardTitle className="text-sm font-medium text-muted-foreground">
-                                    CPI Score
-                                </CardTitle>
-                                <TrendingUp className="h-4 w-4 text-green-500" />
-                            </CardHeader>
-                            <CardContent>
-                                <div className="text-2xl font-bold">{caseDetail.cpiScore ?? "N/A"}</div>
-                            </CardContent>
-                        </Card>
-
-                        <Card className="border-l-4 border-l-orange-500 shadow-sm hover:shadow-md transition-shadow">
-                            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                                <CardTitle className="text-sm font-medium text-muted-foreground">
-                                    Days Open
-                                </CardTitle>
-                                <Calendar className="h-4 w-4 text-orange-500" />
-                            </CardHeader>
-                            <CardContent>
-                                <div className="text-2xl font-bold">{caseDetail.daysOpen ?? 0}</div>
-                                {formatDate(caseDetail.createdAt) && (
-                                    <p className="text-xs text-muted-foreground mt-1">
-                                        Since {formatDate(caseDetail.createdAt)}
-                                    </p>
-                                )}
-                            </CardContent>
-                        </Card>
-                    </div>
-                </TabsContent>
-
-                {/* BE Form Tab */}
-                <TabsContent value="be-form">
-                    <Card className="shadow-md border-t-4 border-t-purple-500">
-                        <CardHeader className="bg-purple-50/50 border-b">
-                            <div className="flex items-center gap-2">
-                                <div className="w-8 h-8 rounded-lg bg-purple-100 flex items-center justify-center">
-                                    <FileText className="h-4 w-4 text-purple-600" />
-                                </div>
-                                <div>
-                                    <CardTitle className="text-purple-900">BE Form Data</CardTitle>
-                                    <CardDescription>Submitted form details and company information</CardDescription>
-                                </div>
-                            </div>
+            {/* Case Details Section */}
+            <div className="space-y-6">
+                {/* Key Metrics */}
+                <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+                    <Card className="border-l-4 border-l-blue-500 shadow-sm hover:shadow-md transition-shadow">
+                        <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                            <CardTitle className="text-sm font-medium text-muted-foreground">
+                                Business Unit
+                            </CardTitle>
+                            <Building2 className="h-4 w-4 text-blue-500" />
                         </CardHeader>
-                        <CardContent className="pt-6">
+                        <CardContent>
+                            <div className="text-2xl font-bold">{caseDetail.businessUnit || 'N/A'}</div>
+                        </CardContent>
+                    </Card>
+
+                    <Card className="border-l-4 border-l-purple-500 shadow-sm hover:shadow-md transition-shadow">
+                        <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                            <CardTitle className="text-sm font-medium text-muted-foreground">
+                                Assigned User
+                            </CardTitle>
+                            <User className="h-4 w-4 text-purple-500" />
+                        </CardHeader>
+                        <CardContent>
+                            <div className="text-2xl font-bold">{caseDetail.assignedUser || 'N/A'}</div>
+                        </CardContent>
+                    </Card>
+
+                    <Card className="border-l-4 border-l-green-500 shadow-sm hover:shadow-md transition-shadow">
+                        <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                            <CardTitle className="text-sm font-medium text-muted-foreground">
+                                Role Type
+                            </CardTitle>
+                            <TrendingUp className="h-4 w-4 text-green-500" />
+                        </CardHeader>
+                        <CardContent>
+                            <div className="text-2xl font-bold">{caseDetail.beForm?.roleType || caseDetail.riskTier || 'N/A'}</div>
+                        </CardContent>
+                    </Card>
+
+                    <Card className="border-l-4 border-l-orange-500 shadow-sm hover:shadow-md transition-shadow">
+                        <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                            <CardTitle className="text-sm font-medium text-muted-foreground">
+                                Days Open
+                            </CardTitle>
+                            <Calendar className="h-4 w-4 text-orange-500" />
+                        </CardHeader>
+                        <CardContent>
+                            <div className="text-2xl font-bold">{caseDetail.daysOpen ?? 0}</div>
+                            {formatDate(caseDetail.createdAt) && (
+                                <p className="text-xs text-muted-foreground mt-1">
+                                    Since {formatDate(caseDetail.createdAt)}
+                                </p>
+                            )}
+                        </CardContent>
+                    </Card>
+                </div>
+
+                {/* Company Information */}
+                <Card className="shadow-md border-t-4 border-t-purple-500">
+                    <CardHeader className="bg-purple-50/50 border-b">
+                        <div className="flex items-center gap-2">
+                            <div className="w-8 h-8 rounded-lg bg-purple-100 flex items-center justify-center">
+                                <Building className="h-4 w-4 text-purple-600" />
+                            </div>
+                            <div>
+                                <CardTitle className="text-purple-900">Entity & Contact Information</CardTitle>
+                                <CardDescription>Detailed company and contact information</CardDescription>
+                            </div>
+                        </div>
+                    </CardHeader>
+                    <CardContent className="pt-6">
                             {caseDetail.beForm ? (
                                 <div className="grid md:grid-cols-2 gap-6">
                                     <div className="space-y-4">
@@ -432,11 +398,10 @@ export default function CaseDetailPage() {
                             )}
                         </CardContent>
                     </Card>
-                </TabsContent>
 
-                {/* Automation Results Tab */}
-                <TabsContent value="automation">
-                    <Card className="shadow-md border-t-4 border-t-green-500">
+
+                {/* Automation Results */}
+                <Card className="shadow-md border-t-4 border-t-green-500">
                         <CardHeader className="bg-green-50/50 border-b">
                             <div className="flex items-center gap-2">
                                 <div className="w-8 h-8 rounded-lg bg-green-100 flex items-center justify-center">
@@ -519,12 +484,10 @@ export default function CaseDetailPage() {
                                 </div>
                             )}
                         </CardContent>
-                    </Card>
-                </TabsContent>
+                </Card>
 
-                {/* Attachments Tab */}
-                <TabsContent value="attachments">
-                    <Card className="shadow-md border-t-4 border-t-orange-500">
+                {/* Attachments */}
+                <Card className="shadow-md border-t-4 border-t-orange-500">
                         <CardHeader className="bg-orange-50/50 border-b">
                             <div className="flex items-center gap-2">
                                 <div className="w-8 h-8 rounded-lg bg-orange-100 flex items-center justify-center">
@@ -583,10 +546,9 @@ export default function CaseDetailPage() {
                                     <p className="text-sm">Files will appear here when added to the case</p>
                                 </div>
                             )}
-                        </CardContent>
-                    </Card>
-                </TabsContent>
-            </Tabs>
+                    </CardContent>
+                </Card>
+            </div>
 
             {/* PAS Actions */}
             <div className="flex justify-end gap-3 pt-6">
