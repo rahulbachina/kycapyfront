@@ -37,9 +37,8 @@ export default function RootLayout({
                   </div>
                   <div className="flex flex-col">
                     <span className="font-bold text-lg bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent">
-                      Vantage KYC
+                      Vantage KYC Automation Test Harness
                     </span>
-                    <span className="text-xs text-muted-foreground">Ardonagh Specialities</span>
                   </div>
                 </a>
 
