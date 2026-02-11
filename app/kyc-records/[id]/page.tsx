@@ -151,7 +151,7 @@ export default function CaseDetailPage() {
         }
     }
 
-    const getAutomationStatusIcon = (status: string) => {
+    const getAutomationStatusIcon = (status?: string) => {
         switch (status) {
             case 'success': return <CheckCircle2 className="h-5 w-5 text-green-600" />
             case 'pending': return <Clock className="h-5 w-5 text-yellow-600" />
@@ -161,7 +161,7 @@ export default function CaseDetailPage() {
         }
     }
 
-    const getAutomationStatusColor = (status: string) => {
+    const getAutomationStatusColor = (status?: string) => {
         switch (status) {
             case 'success': return 'bg-green-50 border-green-200'
             case 'pending': return 'bg-yellow-50 border-yellow-200'
@@ -352,64 +352,84 @@ export default function CaseDetailPage() {
                             </div>
                         </CardHeader>
                         <CardContent className="pt-6">
-                            <div className="grid md:grid-cols-2 gap-6">
-                                <div className="space-y-4">
-                                    <h3 className="font-semibold text-lg flex items-center gap-2">
-                                        <Building className="h-5 w-5 text-purple-600" />
-                                        Company Information
-                                    </h3>
-                                    <div className="space-y-3">
-                                        <div className="flex items-start gap-2">
-                                            <span className="text-muted-foreground min-w-[140px]">Legal Name:</span>
-                                            <span className="font-medium">{caseDetail.beForm.legalName}</span>
-                                        </div>
-                                        <div className="flex items-start gap-2">
-                                            <span className="text-muted-foreground min-w-[140px]">Trading Name:</span>
-                                            <span className="font-medium">{caseDetail.beForm.tradingName}</span>
-                                        </div>
-                                        <div className="flex items-start gap-2">
-                                            <Hash className="h-4 w-4 text-muted-foreground mt-0.5" />
-                                            <span className="text-muted-foreground min-w-[120px]">Registration No:</span>
-                                            <span className="font-medium font-mono">{caseDetail.beForm.registrationNumber}</span>
-                                        </div>
-                                        <div className="flex items-start gap-2">
-                                            <MapPin className="h-4 w-4 text-muted-foreground mt-0.5" />
-                                            <span className="text-muted-foreground min-w-[120px]">Country:</span>
-                                            <span className="font-medium">{caseDetail.beForm.country}</span>
+                            {caseDetail.beForm ? (
+                                <div className="grid md:grid-cols-2 gap-6">
+                                    <div className="space-y-4">
+                                        <h3 className="font-semibold text-lg flex items-center gap-2">
+                                            <Building className="h-5 w-5 text-purple-600" />
+                                            Company Information
+                                        </h3>
+                                        <div className="space-y-3">
+                                            <div className="flex items-start gap-2">
+                                                <span className="text-muted-foreground min-w-[140px]">Legal Name:</span>
+                                                <span className="font-medium">{caseDetail.beForm.legalName || 'N/A'}</span>
+                                            </div>
+                                            <div className="flex items-start gap-2">
+                                                <span className="text-muted-foreground min-w-[140px]">Trading Name:</span>
+                                                <span className="font-medium">{caseDetail.beForm.tradingName || 'N/A'}</span>
+                                            </div>
+                                            <div className="flex items-start gap-2">
+                                                <Hash className="h-4 w-4 text-muted-foreground mt-0.5" />
+                                                <span className="text-muted-foreground min-w-[120px]">Registration No:</span>
+                                                <span className="font-medium font-mono">{caseDetail.beForm.registrationNumber || 'N/A'}</span>
+                                            </div>
+                                            <div className="flex items-start gap-2">
+                                                <MapPin className="h-4 w-4 text-muted-foreground mt-0.5" />
+                                                <span className="text-muted-foreground min-w-[120px]">Country:</span>
+                                                <span className="font-medium">{caseDetail.beForm.country || 'N/A'}</span>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
 
-                                <div className="space-y-4">
-                                    <h3 className="font-semibold text-lg flex items-center gap-2">
-                                        <Mail className="h-5 w-5 text-purple-600" />
-                                        Contact Information
-                                    </h3>
-                                    <div className="space-y-3">
-                                        <div className="flex items-start gap-2">
-                                            <span className="text-muted-foreground min-w-[140px]">Statement Email:</span>
-                                            <a href={`mailto:${caseDetail.beForm.statementEmail}`} className="font-medium text-blue-600 hover:underline">
-                                                {caseDetail.beForm.statementEmail}
-                                            </a>
-                                        </div>
-                                        <div className="flex items-start gap-2">
-                                            <span className="text-muted-foreground min-w-[140px]">Credit Email:</span>
-                                            <a href={`mailto:${caseDetail.beForm.creditControllerEmail}`} className="font-medium text-blue-600 hover:underline">
-                                                {caseDetail.beForm.creditControllerEmail}
-                                            </a>
-                                        </div>
-                                        <div className="flex items-start gap-2">
-                                            <span className="text-muted-foreground min-w-[140px]">Address:</span>
-                                            <div className="font-medium">
-                                                {caseDetail.beForm.addressLine1}
-                                                {caseDetail.beForm.addressLine2 && <>, {caseDetail.beForm.addressLine2}</>}
-                                                <br />
-                                                {caseDetail.beForm.city}, {caseDetail.beForm.postcode}
+                                    <div className="space-y-4">
+                                        <h3 className="font-semibold text-lg flex items-center gap-2">
+                                            <Mail className="h-5 w-5 text-purple-600" />
+                                            Contact Information
+                                        </h3>
+                                        <div className="space-y-3">
+                                            <div className="flex items-start gap-2">
+                                                <span className="text-muted-foreground min-w-[140px]">Statement Email:</span>
+                                                {caseDetail.beForm.statementEmail ? (
+                                                    <a href={`mailto:${caseDetail.beForm.statementEmail}`} className="font-medium text-blue-600 hover:underline">
+                                                        {caseDetail.beForm.statementEmail}
+                                                    </a>
+                                                ) : (
+                                                    <span className="font-medium">N/A</span>
+                                                )}
+                                            </div>
+                                            <div className="flex items-start gap-2">
+                                                <span className="text-muted-foreground min-w-[140px]">Credit Email:</span>
+                                                {caseDetail.beForm.creditControllerEmail ? (
+                                                    <a href={`mailto:${caseDetail.beForm.creditControllerEmail}`} className="font-medium text-blue-600 hover:underline">
+                                                        {caseDetail.beForm.creditControllerEmail}
+                                                    </a>
+                                                ) : (
+                                                    <span className="font-medium">N/A</span>
+                                                )}
+                                            </div>
+                                            <div className="flex items-start gap-2">
+                                                <span className="text-muted-foreground min-w-[140px]">Address:</span>
+                                                <div className="font-medium">
+                                                    {caseDetail.beForm.addressLine1 || 'N/A'}
+                                                    {caseDetail.beForm.addressLine2 && <>, {caseDetail.beForm.addressLine2}</>}
+                                                    {caseDetail.beForm.city && caseDetail.beForm.postcode && (
+                                                        <>
+                                                            <br />
+                                                            {caseDetail.beForm.city}, {caseDetail.beForm.postcode}
+                                                        </>
+                                                    )}
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            ) : (
+                                <div className="flex flex-col items-center justify-center py-12 text-muted-foreground">
+                                    <FileText className="h-12 w-12 mb-3 opacity-20" />
+                                    <p className="font-medium">No BE Form data available</p>
+                                    <p className="text-sm">This record does not have associated form data</p>
+                                </div>
+                            )}
                         </CardContent>
                     </Card>
                 </TabsContent>
@@ -429,59 +449,75 @@ export default function CaseDetailPage() {
                             </div>
                         </CardHeader>
                         <CardContent className="pt-6">
-                            <div className="grid md:grid-cols-2 gap-4">
-                                <div className={`flex items-center justify-between p-4 rounded-lg border-2 ${getAutomationStatusColor(caseDetail.automationResults.companiesHouse.status)} transition-all hover:shadow-md`}>
-                                    <div className="flex items-center gap-3">
-                                        {getAutomationStatusIcon(caseDetail.automationResults.companiesHouse.status)}
-                                        <div>
-                                            <div className="font-semibold">Companies House</div>
-                                            <div className="text-sm text-muted-foreground capitalize">{caseDetail.automationResults.companiesHouse.status}</div>
+                            {caseDetail.automationResults ? (
+                                <div className="grid md:grid-cols-2 gap-4">
+                                    {caseDetail.automationResults.companiesHouse && (
+                                        <div className={`flex items-center justify-between p-4 rounded-lg border-2 ${getAutomationStatusColor(caseDetail.automationResults.companiesHouse.status)} transition-all hover:shadow-md`}>
+                                            <div className="flex items-center gap-3">
+                                                {getAutomationStatusIcon(caseDetail.automationResults.companiesHouse.status)}
+                                                <div>
+                                                    <div className="font-semibold">Companies House</div>
+                                                    <div className="text-sm text-muted-foreground capitalize">{caseDetail.automationResults.companiesHouse.status || 'N/A'}</div>
+                                                </div>
+                                            </div>
+                                            {caseDetail.automationResults.companiesHouse.status === 'success' && (
+                                                <ExternalLink className="h-4 w-4 text-muted-foreground" />
+                                            )}
                                         </div>
-                                    </div>
-                                    {caseDetail.automationResults.companiesHouse.status === 'success' && (
-                                        <ExternalLink className="h-4 w-4 text-muted-foreground" />
                                     )}
-                                </div>
 
-                                <div className={`flex items-center justify-between p-4 rounded-lg border-2 ${getAutomationStatusColor(caseDetail.automationResults.fca.status)} transition-all hover:shadow-md`}>
-                                    <div className="flex items-center gap-3">
-                                        {getAutomationStatusIcon(caseDetail.automationResults.fca.status)}
-                                        <div>
-                                            <div className="font-semibold">FCA</div>
-                                            <div className="text-sm text-muted-foreground capitalize">{caseDetail.automationResults.fca.status}</div>
+                                    {caseDetail.automationResults.fca && (
+                                        <div className={`flex items-center justify-between p-4 rounded-lg border-2 ${getAutomationStatusColor(caseDetail.automationResults.fca.status)} transition-all hover:shadow-md`}>
+                                            <div className="flex items-center gap-3">
+                                                {getAutomationStatusIcon(caseDetail.automationResults.fca.status)}
+                                                <div>
+                                                    <div className="font-semibold">FCA</div>
+                                                    <div className="text-sm text-muted-foreground capitalize">{caseDetail.automationResults.fca.status || 'N/A'}</div>
+                                                </div>
+                                            </div>
+                                            {caseDetail.automationResults.fca.status === 'success' && (
+                                                <ExternalLink className="h-4 w-4 text-muted-foreground" />
+                                            )}
                                         </div>
-                                    </div>
-                                    {caseDetail.automationResults.fca.status === 'success' && (
-                                        <ExternalLink className="h-4 w-4 text-muted-foreground" />
                                     )}
-                                </div>
 
-                                <div className={`flex items-center justify-between p-4 rounded-lg border-2 ${getAutomationStatusColor(caseDetail.automationResults.dAndB.status)} transition-all hover:shadow-md`}>
-                                    <div className="flex items-center gap-3">
-                                        {getAutomationStatusIcon(caseDetail.automationResults.dAndB.status)}
-                                        <div>
-                                            <div className="font-semibold">D&B</div>
-                                            <div className="text-sm text-muted-foreground capitalize">{caseDetail.automationResults.dAndB.status}</div>
+                                    {caseDetail.automationResults.dAndB && (
+                                        <div className={`flex items-center justify-between p-4 rounded-lg border-2 ${getAutomationStatusColor(caseDetail.automationResults.dAndB.status)} transition-all hover:shadow-md`}>
+                                            <div className="flex items-center gap-3">
+                                                {getAutomationStatusIcon(caseDetail.automationResults.dAndB.status)}
+                                                <div>
+                                                    <div className="font-semibold">D&B</div>
+                                                    <div className="text-sm text-muted-foreground capitalize">{caseDetail.automationResults.dAndB.status || 'N/A'}</div>
+                                                </div>
+                                            </div>
+                                            {caseDetail.automationResults.dAndB.status === 'success' && (
+                                                <ExternalLink className="h-4 w-4 text-muted-foreground" />
+                                            )}
                                         </div>
-                                    </div>
-                                    {caseDetail.automationResults.dAndB.status === 'success' && (
-                                        <ExternalLink className="h-4 w-4 text-muted-foreground" />
                                     )}
-                                </div>
 
-                                <div className={`flex items-center justify-between p-4 rounded-lg border-2 ${getAutomationStatusColor(caseDetail.automationResults.lexisNexis.status)} transition-all hover:shadow-md`}>
-                                    <div className="flex items-center gap-3">
-                                        {getAutomationStatusIcon(caseDetail.automationResults.lexisNexis.status)}
-                                        <div>
-                                            <div className="font-semibold">LexisNexis</div>
-                                            <div className="text-sm text-muted-foreground capitalize">{caseDetail.automationResults.lexisNexis.status}</div>
+                                    {caseDetail.automationResults.lexisNexis && (
+                                        <div className={`flex items-center justify-between p-4 rounded-lg border-2 ${getAutomationStatusColor(caseDetail.automationResults.lexisNexis.status)} transition-all hover:shadow-md`}>
+                                            <div className="flex items-center gap-3">
+                                                {getAutomationStatusIcon(caseDetail.automationResults.lexisNexis.status)}
+                                                <div>
+                                                    <div className="font-semibold">LexisNexis</div>
+                                                    <div className="text-sm text-muted-foreground capitalize">{caseDetail.automationResults.lexisNexis.status || 'N/A'}</div>
+                                                </div>
+                                            </div>
+                                            {caseDetail.automationResults.lexisNexis.status === 'success' && (
+                                                <ExternalLink className="h-4 w-4 text-muted-foreground" />
+                                            )}
                                         </div>
-                                    </div>
-                                    {caseDetail.automationResults.lexisNexis.status === 'success' && (
-                                        <ExternalLink className="h-4 w-4 text-muted-foreground" />
                                     )}
                                 </div>
-                            </div>
+                            ) : (
+                                <div className="flex flex-col items-center justify-center py-12 text-muted-foreground">
+                                    <CheckCircle2 className="h-12 w-12 mb-3 opacity-20" />
+                                    <p className="font-medium">No automation results available</p>
+                                    <p className="text-sm">Automation checks have not been run for this record</p>
+                                </div>
+                            )}
                         </CardContent>
                     </Card>
                 </TabsContent>
