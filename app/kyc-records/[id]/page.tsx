@@ -30,7 +30,8 @@ import {
     Building,
     Mail,
     MapPin,
-    Hash
+    Hash,
+    FileJson
 } from "lucide-react"
 import { toast } from "sonner"
 import {
@@ -46,6 +47,8 @@ import {
 } from "@/components/ui/alert-dialog"
 import { format } from "date-fns"
 import { ApiInteractionPanel } from "@/components/api-testing/shared/ApiInteractionPanel"
+import { JsonViewerDialog } from "@/components/cases/JsonViewerDialog"
+import { api } from "@/lib/api/client"
 
 export default function CaseDetailPage() {
     const params = useParams()
@@ -58,6 +61,9 @@ export default function CaseDetailPage() {
         response: any;
         timestamp: string;
     } | null>(null)
+    const [showPasJson, setShowPasJson] = useState(false)
+    const [pasJsonData, setPasJsonData] = useState<any>(null)
+    const [isConvertingToPas, setIsConvertingToPas] = useState(false)
 
     // Track API interactions when case data changes
     useEffect(() => {
@@ -112,6 +118,24 @@ export default function CaseDetailPage() {
             router.push("/kyc-records")
         } catch (error) {
             toast.error("Failed to delete case")
+        }
+    }
+
+    const handleConvertToPas = async () => {
+        setIsConvertingToPas(true)
+        try {
+            const pasData = await api.cases.convertToPas(id)
+            setPasJsonData(pasData)
+            setShowPasJson(true)
+            toast.success("Successfully converted to PAS format")
+        } catch (error: any) {
+            console.error("Convert to PAS error:", error)
+            const errorMessage = error.response?.data?.detail
+                || error.message
+                || "Failed to convert to PAS format"
+            toast.error(errorMessage)
+        } finally {
+            setIsConvertingToPas(false)
         }
     }
 
@@ -514,8 +538,18 @@ export default function CaseDetailPage() {
                 </TabsContent>
             </Tabs>
 
-            {/* Send to PAS Button */}
-            <div className="flex justify-end pt-6">
+            {/* PAS Actions */}
+            <div className="flex justify-end gap-3 pt-6">
+                <Button
+                    onClick={handleConvertToPas}
+                    size="lg"
+                    variant="outline"
+                    disabled={isConvertingToPas}
+                    className="shadow-md hover:shadow-lg transition-all"
+                >
+                    <FileJson className="mr-2 h-5 w-5" />
+                    {isConvertingToPas ? "Converting..." : "Convert to PAS JSON"}
+                </Button>
                 <Button
                     onClick={() => router.push(`/kyc-records/${id}/send-to-pas`)}
                     size="lg"
@@ -534,6 +568,15 @@ export default function CaseDetailPage() {
                     timestamp={apiInteraction.timestamp}
                 />
             )}
+
+            {/* PAS JSON Viewer Dialog */}
+            <JsonViewerDialog
+                open={showPasJson}
+                onOpenChange={setShowPasJson}
+                title="PAS Client Process JSON"
+                description="This is the generated PAS format for this KYC record"
+                data={pasJsonData}
+            />
         </div>
     )
 }
