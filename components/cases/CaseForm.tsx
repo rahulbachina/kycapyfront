@@ -61,7 +61,7 @@ export function CaseForm({ defaultValues, onSubmit, isLoading, isEdit }: CaseFor
             legalName: "",
             tradingName: "",
             country: "",
-            roleType: "",
+            roleType: "CLIENT",
             addressLine1: "",
             city: "",
             postcode: "",
@@ -299,7 +299,22 @@ export function CaseForm({ defaultValues, onSubmit, isLoading, isEdit }: CaseFor
                                 <FormItem><FormLabel>Country</FormLabel><FormControl><Input {...field} /></FormControl><FormMessage /></FormItem>
                             )} />
                             <FormField control={form.control} name="beForm.roleType" render={({ field }) => (
-                                <FormItem><FormLabel>Role Type</FormLabel><FormControl><Input {...field} /></FormControl><FormMessage /></FormItem>
+                                <FormItem>
+                                    <FormLabel>Role Type</FormLabel>
+                                    <Select onValueChange={field.onChange} defaultValue={field.value || "CLIENT"}>
+                                        <FormControl><SelectTrigger><SelectValue placeholder="Select role type" /></SelectTrigger></FormControl>
+                                        <SelectContent position="popper" sideOffset={4}>
+                                            <SelectItem value="CLIENT">Client</SelectItem>
+                                            <SelectItem value="BROKER">Broker</SelectItem>
+                                            <SelectItem value="UNDERWRITER">Underwriter</SelectItem>
+                                            <SelectItem value="REINSURER">Reinsurer</SelectItem>
+                                            <SelectItem value="COVERHOLDER">Coverholder</SelectItem>
+                                            <SelectItem value="MANAGING_AGENT">Managing Agent</SelectItem>
+                                            <SelectItem value="SERVICE_PROVIDER">Service Provider</SelectItem>
+                                        </SelectContent>
+                                    </Select>
+                                    <FormMessage />
+                                </FormItem>
                             )} />
                             <FormField control={form.control} name="beForm.addressLine1" render={({ field }) => (
                                 <FormItem><FormLabel>Address Line 1</FormLabel><FormControl><Input {...field} /></FormControl><FormMessage /></FormItem>
