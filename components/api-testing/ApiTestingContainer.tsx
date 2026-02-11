@@ -23,7 +23,7 @@ export function ApiTestingContainer() {
       {/* Tabs */}
       <Card className="shadow-md">
         <Tabs defaultValue="companies-house" className="w-full">
-          <TabsList className="mb-6 w-full flex flex-wrap justify-start gap-2 p-4 bg-muted/30 rounded-t-lg border-b">
+          <TabsList className="w-full flex flex-wrap justify-start gap-2 p-4 pt-6 bg-muted/30 rounded-none border-b">
             <TabsTrigger
               value="companies-house"
               className="flex items-center gap-2 data-[state=active]:bg-blue-600 data-[state=active]:text-white"
