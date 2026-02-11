@@ -2,11 +2,10 @@
 
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
 import { Card } from '@/components/ui/card';
-import { Building2, Shield, Database, Briefcase, Plus } from 'lucide-react';
+import { Building2, Shield, Database, Briefcase } from 'lucide-react';
 import { CompaniesHouseTab } from './CompaniesHouseTab';
 import { FcaRegisterTab } from './FcaRegisterTab';
 import { PlaceholderTab } from './PlaceholderTab';
-import { CreateCaseTab } from './CreateCaseTab';
 
 export function ApiTestingContainer() {
   return (
@@ -23,16 +22,9 @@ export function ApiTestingContainer() {
 
       {/* Tabs */}
       <Card className="shadow-md overflow-hidden">
-        <Tabs defaultValue="create-case" className="w-full">
+        <Tabs defaultValue="companies-house" className="w-full">
           <div className="pt-4 px-4 pb-0 bg-muted/30 border-b">
             <TabsList className="w-full flex flex-wrap justify-start gap-2 p-0 bg-transparent h-auto">
-              <TabsTrigger
-                value="create-case"
-                className="flex items-center gap-2 data-[state=active]:bg-green-600 data-[state=active]:text-white"
-              >
-                <Plus size={18} />
-                Create KYC Record
-              </TabsTrigger>
               <TabsTrigger
                 value="companies-house"
                 className="flex items-center gap-2 data-[state=active]:bg-blue-600 data-[state=active]:text-white"
@@ -67,10 +59,6 @@ export function ApiTestingContainer() {
           </div>
 
           <div className="p-6">
-            <TabsContent value="create-case" className="mt-0">
-              <CreateCaseTab />
-            </TabsContent>
-
             <TabsContent value="companies-house" className="mt-0">
               <CompaniesHouseTab />
             </TabsContent>

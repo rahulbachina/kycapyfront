@@ -1,6 +1,7 @@
 "use client"
 
 import { useForm } from "react-hook-form"
+import type { FieldErrors } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { z } from "zod"
 import { Button } from "@/components/ui/button"
@@ -78,9 +79,44 @@ export function CaseForm({ defaultValues, onSubmit, isLoading, isEdit }: CaseFor
         } as any,
     })
 
+    const findFirstErrorPath = (errors: FieldErrors<CaseFormValues>, parent = ""): string | null => {
+        for (const key in errors) {
+            const fieldError = errors[key as keyof typeof errors] as any
+            const path = parent ? `${parent}.${key}` : key
+
+            if (fieldError?.message) {
+                return path
+            }
+
+            if (fieldError && typeof fieldError === "object") {
+                const nestedPath = findFirstErrorPath(fieldError, path)
+                if (nestedPath) {
+                    return nestedPath
+                }
+            }
+        }
+
+        return null
+    }
+
+    const handleInvalidSubmit = (errors: FieldErrors<CaseFormValues>) => {
+        const firstErrorPath = findFirstErrorPath(errors)
+        if (firstErrorPath) {
+            form.setFocus(firstErrorPath as any)
+
+            const field = document.querySelector(`[name="${firstErrorPath}"]`)
+            field?.scrollIntoView({ behavior: "smooth", block: "center" })
+        }
+    }
+
     return (
         <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 pb-12">
+            <form onSubmit={form.handleSubmit(onSubmit, handleInvalidSubmit)} className="space-y-8 pb-12">
+                {Object.keys(form.formState.errors).length > 0 && (
+                    <p className="text-sm font-medium text-destructive">
+                        Please correct the highlighted fields before continuing.
+                    </p>
+                )}
                 <Card>
                     <CardHeader>
                         <CardTitle>Case Information</CardTitle>
