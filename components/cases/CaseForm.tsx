@@ -40,7 +40,13 @@ export function CaseForm({ defaultValues, onSubmit, isLoading, isEdit }: CaseFor
 
     // Generate a GUID for new cases
     const generateCaseId = () => {
-        return 'KYC-' + crypto.randomUUID().substring(0, 8).toUpperCase()
+        // Use crypto.randomUUID if available (modern browsers), otherwise fallback
+        if (typeof crypto !== 'undefined' && crypto.randomUUID) {
+            return 'KYC-' + crypto.randomUUID().substring(0, 8).toUpperCase()
+        }
+        // Fallback: generate random string
+        const randomStr = Math.random().toString(36).substring(2, 10).toUpperCase()
+        return 'KYC-' + randomStr
     }
 
     const initialDefaults: CaseFormValues = {
