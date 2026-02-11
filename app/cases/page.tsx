@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { useCases } from "@/hooks/useCases"
 import { CaseFilters } from "@/components/cases/CaseFilters"
 import { CasesTable } from "@/components/cases/CasesTable"
@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { PlusCircle, FolderOpen, AlertCircle, CheckCircle2, Clock } from "lucide-react"
 import Link from "next/link"
+import { ApiInteractionPanel } from "@/components/api-testing/shared/ApiInteractionPanel"
 
 export default function CasesPage() {
     const [filters, setFilters] = useState({
@@ -19,8 +20,13 @@ export default function CasesPage() {
     const [pageSize] = useState(25)
     const [sortBy, setSortBy] = useState("createdAt")
     const [sortOrder, setSortOrder] = useState<"asc" | "desc">("desc")
+    const [apiInteraction, setApiInteraction] = useState<{
+        request: any;
+        response: any;
+        timestamp: string;
+    } | null>(null)
 
-    const { data, isLoading } = useCases({
+    const queryParams = {
         page,
         pageSize,
         search: filters.search || undefined,
@@ -28,7 +34,37 @@ export default function CasesPage() {
         businessUnit: filters.businessUnit || undefined,
         sortBy,
         sortOrder,
-    })
+    }
+
+    const { data, isLoading } = useCases(queryParams)
+
+    // Track API interactions when data changes
+    useEffect(() => {
+        if (data) {
+            const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL || '/api'
+            const queryString = new URLSearchParams(
+                Object.entries(queryParams)
+                    .filter(([_, v]) => v !== undefined)
+                    .map(([k, v]) => [k, String(v)])
+            ).toString()
+
+            setApiInteraction({
+                request: {
+                    url: `${baseUrl}/cases${queryString ? `?${queryString}` : ''}`,
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                },
+                response: {
+                    status: 200,
+                    statusText: 'OK',
+                    body: data
+                },
+                timestamp: new Date().toISOString()
+            })
+        }
+    }, [data])
 
     const handleFilterChange = (key: string, value: string) => {
         setFilters((prev) => ({ ...prev, [key]: value }))
@@ -204,6 +240,15 @@ export default function CasesPage() {
                     </div>
                 </CardContent>
             </Card>
+
+            {/* API Request/Response Panel */}
+            {apiInteraction && (
+                <ApiInteractionPanel
+                    request={apiInteraction.request}
+                    response={apiInteraction.response}
+                    timestamp={apiInteraction.timestamp}
+                />
+            )}
         </div>
     )
 }

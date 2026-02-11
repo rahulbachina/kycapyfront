@@ -2,6 +2,7 @@
 
 import { useCase, useDeleteCase } from "@/hooks/useCases"
 import { useParams, useRouter } from "next/navigation"
+import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
@@ -44,6 +45,7 @@ import {
     AlertDialogTrigger,
 } from "@/components/ui/alert-dialog"
 import { format } from "date-fns"
+import { ApiInteractionPanel } from "@/components/api-testing/shared/ApiInteractionPanel"
 
 export default function CaseDetailPage() {
     const params = useParams()
@@ -51,6 +53,33 @@ export default function CaseDetailPage() {
     const id = params.id as string
     const { data: caseDetail, isLoading, error } = useCase(id)
     const deleteMutation = useDeleteCase()
+    const [apiInteraction, setApiInteraction] = useState<{
+        request: any;
+        response: any;
+        timestamp: string;
+    } | null>(null)
+
+    // Track API interactions when case data changes
+    useEffect(() => {
+        if (caseDetail) {
+            const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL || '/api'
+            setApiInteraction({
+                request: {
+                    url: `${baseUrl}/cases/${id}`,
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                },
+                response: {
+                    status: 200,
+                    statusText: 'OK',
+                    body: caseDetail
+                },
+                timestamp: new Date().toISOString()
+            })
+        }
+    }, [caseDetail, id])
 
     if (isLoading) {
         return (
@@ -496,6 +525,15 @@ export default function CaseDetailPage() {
                     Send to PAS
                 </Button>
             </div>
+
+            {/* API Request/Response Panel */}
+            {apiInteraction && (
+                <ApiInteractionPanel
+                    request={apiInteraction.request}
+                    response={apiInteraction.response}
+                    timestamp={apiInteraction.timestamp}
+                />
+            )}
         </div>
     )
 }
