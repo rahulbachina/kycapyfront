@@ -60,7 +60,9 @@ export function Sidebar() {
                 </div>
 
                 {/* Menu Sections */}
-                {menuItems.map((section) => (
+                {menuItems
+                    .filter((section) => section.title !== "Operations" && section.title !== "Management")
+                    .map((section) => (
                     <div key={section.title} className="space-y-2">
                         <h3 className="px-2 text-xs font-semibold text-gray-500 uppercase tracking-wider">
                             {section.title}
