@@ -65,6 +65,18 @@ export default function CaseDetailPage() {
     const [pasJsonData, setPasJsonData] = useState<any>(null)
     const [isConvertingToPas, setIsConvertingToPas] = useState(false)
 
+    // Safe date formatter
+    const formatDate = (dateString: string | null | undefined, formatStr: string = 'MMM dd, yyyy'): string | null => {
+        if (!dateString) return null
+        try {
+            const date = new Date(dateString)
+            if (isNaN(date.getTime())) return null
+            return format(date, formatStr)
+        } catch {
+            return null
+        }
+    }
+
     // Track API interactions when case data changes
     useEffect(() => {
         if (caseDetail) {
@@ -315,9 +327,11 @@ export default function CaseDetailPage() {
                             </CardHeader>
                             <CardContent>
                                 <div className="text-2xl font-bold">{caseDetail.daysOpen ?? 0}</div>
-                                <p className="text-xs text-muted-foreground mt-1">
-                                    Since {format(new Date(caseDetail.createdAt), 'MMM dd, yyyy')}
-                                </p>
+                                {formatDate(caseDetail.createdAt) && (
+                                    <p className="text-xs text-muted-foreground mt-1">
+                                        Since {formatDate(caseDetail.createdAt)}
+                                    </p>
+                                )}
                             </CardContent>
                         </Card>
                     </div>
