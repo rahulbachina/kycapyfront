@@ -1,0 +1,1392 @@
+{
+  "version": "4.0.0",
+  "description": "KYC Vantage Master Ruleset - Complete source of truth for country risk, role mapping, rules matrix, document sets, validation checks, and FCA enrichment rules",
+  "lastUpdated": "2026-02-18",
+  "schemaVersion": "V5-FCA",
+  "rulesMatrix": {
+    "description": "Determines finalRiskProfile and documentSetCode from countryRisk \u00d7 roleMain",
+    "rules": [
+      {
+        "countryRisk": "LOWER",
+        "roleMain": "Client",
+        "roleSub": "Intermediary",
+        "finalRiskProfile": "LOWER",
+        "documentSetCode": "DOC_CLIENT_LOW",
+        "cddLevel": "Standard CDD"
+      },
+      {
+        "countryRisk": "LOWER",
+        "roleMain": "Client",
+        "roleSub": "Direct",
+        "finalRiskProfile": "LOWER",
+        "documentSetCode": "DOC_CLIENT_LOW",
+        "cddLevel": "Standard CDD"
+      },
+      {
+        "countryRisk": "LOWER",
+        "roleMain": "Client",
+        "roleSub": "Reinsured",
+        "finalRiskProfile": "LOWER",
+        "documentSetCode": "DOC_CLIENT_LOW",
+        "cddLevel": "Standard CDD"
+      },
+      {
+        "countryRisk": "LOWER",
+        "roleMain": "Client",
+        "roleSub": "Individual",
+        "finalRiskProfile": "LOWER",
+        "documentSetCode": "DOC_CLIENT_LOW",
+        "cddLevel": "Standard CDD"
+      },
+      {
+        "countryRisk": "LOWER",
+        "roleMain": "Third Party",
+        "roleSub": "Service Provider",
+        "finalRiskProfile": "HIGHER",
+        "documentSetCode": "DOC_THIRD_PARTY",
+        "cddLevel": "Enhanced CDD"
+      },
+      {
+        "countryRisk": "LOWER",
+        "roleMain": "Third Party",
+        "roleSub": "Assured",
+        "finalRiskProfile": "HIGHER",
+        "documentSetCode": "DOC_THIRD_PARTY",
+        "cddLevel": "Enhanced CDD"
+      },
+      {
+        "countryRisk": "LOWER",
+        "roleMain": "Third Party",
+        "roleSub": "Broker",
+        "finalRiskProfile": "HIGHER",
+        "documentSetCode": "DOC_THIRD_PARTY",
+        "cddLevel": "Enhanced CDD"
+      },
+      {
+        "countryRisk": "LOWER",
+        "roleMain": "Third Party",
+        "roleSub": "Introducer",
+        "finalRiskProfile": "HIGHER",
+        "documentSetCode": "DOC_THIRD_PARTY",
+        "cddLevel": "Enhanced CDD"
+      },
+      {
+        "countryRisk": "LOWER",
+        "roleMain": "Third Party",
+        "roleSub": "Individual",
+        "finalRiskProfile": "HIGHER",
+        "documentSetCode": "DOC_THIRD_PARTY",
+        "cddLevel": "Enhanced CDD"
+      },
+      {
+        "countryRisk": "LOWER",
+        "roleMain": "Underwriter",
+        "roleSub": "Rated Bureau Direct",
+        "finalRiskProfile": "LOWER",
+        "documentSetCode": "DOC_UNDERWRITER_LOW",
+        "cddLevel": "Standard CDD"
+      },
+      {
+        "countryRisk": "LOWER",
+        "roleMain": "Underwriter",
+        "roleSub": "Unrated Bureau Direct",
+        "finalRiskProfile": "LOWER",
+        "documentSetCode": "DOC_UNDERWRITER_LOW",
+        "cddLevel": "Standard CDD"
+      },
+      {
+        "countryRisk": "LOWER",
+        "roleMain": "Underwriter",
+        "roleSub": "Rated Non-Bureau Direct",
+        "finalRiskProfile": "LOWER",
+        "documentSetCode": "DOC_UNDERWRITER_LOW",
+        "cddLevel": "Standard CDD"
+      },
+      {
+        "countryRisk": "LOWER",
+        "roleMain": "Underwriter",
+        "roleSub": "Unrated Non-Bureau Direct",
+        "finalRiskProfile": "LOWER",
+        "documentSetCode": "DOC_UNDERWRITER_LOW",
+        "cddLevel": "Standard CDD"
+      },
+      {
+        "countryRisk": "LOWER",
+        "roleMain": "Underwriter",
+        "roleSub": "MGA/Agency",
+        "finalRiskProfile": "LOWER",
+        "documentSetCode": "DOC_UNDERWRITER_LOW",
+        "cddLevel": "Standard CDD"
+      },
+      {
+        "countryRisk": "LOWER",
+        "roleMain": "Underwriter",
+        "roleSub": "Sub-Broker / Placing Intermediary",
+        "finalRiskProfile": "LOWER",
+        "documentSetCode": "DOC_UNDERWRITER_LOW",
+        "cddLevel": "Standard CDD"
+      },
+      {
+        "countryRisk": "LOWER",
+        "roleMain": "Underwriter",
+        "roleSub": "Rated Indirect Market / H-Code",
+        "finalRiskProfile": "LOWER",
+        "documentSetCode": "DOC_UNDERWRITER_LOW",
+        "cddLevel": "Standard CDD"
+      },
+      {
+        "countryRisk": "LOWER",
+        "roleMain": "Underwriter",
+        "roleSub": "Unrated Indirect Market / H-Code",
+        "finalRiskProfile": "LOWER",
+        "documentSetCode": "DOC_UNDERWRITER_LOW",
+        "cddLevel": "Standard CDD"
+      },
+      {
+        "countryRisk": "HIGHER",
+        "roleMain": "Client",
+        "roleSub": "Intermediary",
+        "finalRiskProfile": "HIGHER",
+        "documentSetCode": "DOC_CLIENT_HIGH",
+        "cddLevel": "Enhanced CDD"
+      },
+      {
+        "countryRisk": "HIGHER",
+        "roleMain": "Client",
+        "roleSub": "Direct",
+        "finalRiskProfile": "HIGHER",
+        "documentSetCode": "DOC_CLIENT_HIGH",
+        "cddLevel": "Enhanced CDD"
+      },
+      {
+        "countryRisk": "HIGHER",
+        "roleMain": "Client",
+        "roleSub": "Reinsured",
+        "finalRiskProfile": "HIGHER",
+        "documentSetCode": "DOC_CLIENT_HIGH",
+        "cddLevel": "Enhanced CDD"
+      },
+      {
+        "countryRisk": "HIGHER",
+        "roleMain": "Client",
+        "roleSub": "Individual",
+        "finalRiskProfile": "HIGHER",
+        "documentSetCode": "DOC_CLIENT_HIGH",
+        "cddLevel": "Enhanced CDD"
+      },
+      {
+        "countryRisk": "HIGHER",
+        "roleMain": "Third Party",
+        "roleSub": "Service Provider",
+        "finalRiskProfile": "HIGHER",
+        "documentSetCode": "DOC_THIRD_PARTY",
+        "cddLevel": "Enhanced CDD"
+      },
+      {
+        "countryRisk": "HIGHER",
+        "roleMain": "Third Party",
+        "roleSub": "Assured",
+        "finalRiskProfile": "HIGHER",
+        "documentSetCode": "DOC_THIRD_PARTY",
+        "cddLevel": "Enhanced CDD"
+      },
+      {
+        "countryRisk": "HIGHER",
+        "roleMain": "Third Party",
+        "roleSub": "Broker",
+        "finalRiskProfile": "HIGHER",
+        "documentSetCode": "DOC_THIRD_PARTY",
+        "cddLevel": "Enhanced CDD"
+      },
+      {
+        "countryRisk": "HIGHER",
+        "roleMain": "Third Party",
+        "roleSub": "Introducer",
+        "finalRiskProfile": "HIGHER",
+        "documentSetCode": "DOC_THIRD_PARTY",
+        "cddLevel": "Enhanced CDD"
+      },
+      {
+        "countryRisk": "HIGHER",
+        "roleMain": "Third Party",
+        "roleSub": "Individual",
+        "finalRiskProfile": "HIGHER",
+        "documentSetCode": "DOC_THIRD_PARTY",
+        "cddLevel": "Enhanced CDD"
+      },
+      {
+        "countryRisk": "HIGHER",
+        "roleMain": "Underwriter",
+        "roleSub": "Rated Bureau Direct",
+        "finalRiskProfile": "HIGHER",
+        "documentSetCode": "DOC_UNDERWRITER_HIGH",
+        "cddLevel": "Enhanced CDD"
+      },
+      {
+        "countryRisk": "HIGHER",
+        "roleMain": "Underwriter",
+        "roleSub": "Unrated Bureau Direct",
+        "finalRiskProfile": "HIGHER",
+        "documentSetCode": "DOC_UNDERWRITER_HIGH",
+        "cddLevel": "Enhanced CDD"
+      },
+      {
+        "countryRisk": "HIGHER",
+        "roleMain": "Underwriter",
+        "roleSub": "Rated Non-Bureau Direct",
+        "finalRiskProfile": "HIGHER",
+        "documentSetCode": "DOC_UNDERWRITER_HIGH",
+        "cddLevel": "Enhanced CDD"
+      },
+      {
+        "countryRisk": "HIGHER",
+        "roleMain": "Underwriter",
+        "roleSub": "Unrated Non-Bureau Direct",
+        "finalRiskProfile": "HIGHER",
+        "documentSetCode": "DOC_UNDERWRITER_HIGH",
+        "cddLevel": "Enhanced CDD"
+      },
+      {
+        "countryRisk": "HIGHER",
+        "roleMain": "Underwriter",
+        "roleSub": "MGA/Agency",
+        "finalRiskProfile": "HIGHER",
+        "documentSetCode": "DOC_UNDERWRITER_HIGH",
+        "cddLevel": "Enhanced CDD"
+      },
+      {
+        "countryRisk": "HIGHER",
+        "roleMain": "Underwriter",
+        "roleSub": "Sub-Broker / Placing Intermediary",
+        "finalRiskProfile": "HIGHER",
+        "documentSetCode": "DOC_UNDERWRITER_HIGH",
+        "cddLevel": "Enhanced CDD"
+      },
+      {
+        "countryRisk": "HIGHER",
+        "roleMain": "Underwriter",
+        "roleSub": "Rated Indirect Market / H-Code",
+        "finalRiskProfile": "HIGHER",
+        "documentSetCode": "DOC_UNDERWRITER_HIGH",
+        "cddLevel": "Enhanced CDD"
+      },
+      {
+        "countryRisk": "HIGHER",
+        "roleMain": "Underwriter",
+        "roleSub": "Unrated Indirect Market / H-Code",
+        "finalRiskProfile": "HIGHER",
+        "documentSetCode": "DOC_UNDERWRITER_HIGH",
+        "cddLevel": "Enhanced CDD"
+      }
+    ]
+  },
+  "roleTypes": {
+    "description": "Role classifications for entities \u2014 lookup table of all valid roleMain / roleSub combinations",
+    "roles": [
+      {
+        "roleMain": "Client",
+        "roleSub": "Intermediary"
+      },
+      {
+        "roleMain": "Client",
+        "roleSub": "Direct"
+      },
+      {
+        "roleMain": "Client",
+        "roleSub": "Reinsured"
+      },
+      {
+        "roleMain": "Client",
+        "roleSub": "Individual"
+      },
+      {
+        "roleMain": "Third Party",
+        "roleSub": "Service Provider"
+      },
+      {
+        "roleMain": "Third Party",
+        "roleSub": "Assured"
+      },
+      {
+        "roleMain": "Third Party",
+        "roleSub": "Broker"
+      },
+      {
+        "roleMain": "Third Party",
+        "roleSub": "Introducer"
+      },
+      {
+        "roleMain": "Third Party",
+        "roleSub": "Individual"
+      },
+      {
+        "roleMain": "Underwriter",
+        "roleSub": "Rated Bureau Direct"
+      },
+      {
+        "roleMain": "Underwriter",
+        "roleSub": "Unrated Bureau Direct"
+      },
+      {
+        "roleMain": "Underwriter",
+        "roleSub": "Rated Non-Bureau Direct"
+      },
+      {
+        "roleMain": "Underwriter",
+        "roleSub": "Unrated Non-Bureau Direct"
+      },
+      {
+        "roleMain": "Underwriter",
+        "roleSub": "MGA/Agency"
+      },
+      {
+        "roleMain": "Underwriter",
+        "roleSub": "Sub-Broker / Placing Intermediary"
+      },
+      {
+        "roleMain": "Underwriter",
+        "roleSub": "Rated Indirect Market / H-Code"
+      },
+      {
+        "roleMain": "Underwriter",
+        "roleSub": "Unrated Indirect Market / H-Code"
+      }
+    ]
+  },
+  "roleMapping": {
+    "description": "Maps intake email roleCategory/clientRoleType to standardised roleMain",
+    "mappings": {
+      "Client Role Type": {
+        "roleMain": "Client",
+        "description": "Direct clients including assureds, cedants, and policyholders"
+      },
+      "Third Party Role Type": {
+        "roleMain": "Third Party",
+        "description": "Third party intermediaries, TPAs, claims handlers"
+      },
+      "Underwriter Role Type": {
+        "roleMain": "Underwriter",
+        "description": "Insurance/reinsurance underwriters, carriers, syndicates"
+      }
+    },
+    "fallbackRules": {
+      "description": "When roleCategory and clientRoleType are both null/empty/Unknown",
+      "rules": [
+        {
+          "condition": "SIC codes contain 65120 or 66220 (insurance)",
+          "result": "Client",
+          "confidence": "MEDIUM"
+        },
+        {
+          "condition": "FCA regulated insurance broker",
+          "result": "Client",
+          "confidence": "MEDIUM"
+        },
+        {
+          "condition": "Completely unknown",
+          "result": "Client",
+          "confidence": "LOW",
+          "note": "Safest default - flag for manual review"
+        }
+      ]
+    },
+    "sicCodeMapping": {
+      "65110": {
+        "description": "Life insurance",
+        "defaultRole": "Underwriter"
+      },
+      "65120": {
+        "description": "Non-life insurance",
+        "defaultRole": "Client"
+      },
+      "65201": {
+        "description": "Life reinsurance",
+        "defaultRole": "Underwriter"
+      },
+      "65202": {
+        "description": "Non-life reinsurance",
+        "defaultRole": "Underwriter"
+      },
+      "66120": {
+        "description": "Security and commodity contracts dealing",
+        "defaultRole": "Client"
+      },
+      "66220": {
+        "description": "Activities of insurance agents and brokers",
+        "defaultRole": "Client"
+      },
+      "66290": {
+        "description": "Other activities auxiliary to insurance",
+        "defaultRole": "Third Party"
+      }
+    }
+  },
+  "clientClassificationFlags": {
+    "description": "Client classification flags and their meanings (lookup table)",
+    "flags": [
+      {
+        "flagCode": "SIMPLIFIED",
+        "description": "Simplified due diligence"
+      },
+      {
+        "flagCode": "KEY_ACCOUNT",
+        "description": "Key account"
+      },
+      {
+        "flagCode": "GROUP_RELIANCE",
+        "description": "Ardonagh Group"
+      },
+      {
+        "flagCode": "LLOYDS_APPROVED",
+        "description": "Lloyd's approved entity"
+      },
+      {
+        "flagCode": "CURRENT_INSURER",
+        "description": "Current insurer becoming a client"
+      }
+    ]
+  },
+  "tobaCatalog": {
+    "description": "Terms of Business Agreement catalog (lookup table)",
+    "agreements": [
+      {
+        "tobaCode": "TOBA_UK_CLIENT",
+        "jurisdiction": "UK",
+        "roleMain": "Client",
+        "legalEntity": "BA Ltd",
+        "description": "UK Client TOBA"
+      },
+      {
+        "tobaCode": "TOBA_UK_UW",
+        "jurisdiction": "UK",
+        "roleMain": "Underwriter",
+        "legalEntity": "BA Ltd",
+        "description": "UK Underwriter TOBA"
+      },
+      {
+        "tobaCode": "TOBA_UK_TP",
+        "jurisdiction": "UK",
+        "roleMain": "Third Party",
+        "legalEntity": "BA Ltd",
+        "description": "UK Third Party TOBA"
+      },
+      {
+        "tobaCode": "TOBA_SG_CLIENT",
+        "jurisdiction": "SG",
+        "roleMain": "Client",
+        "legalEntity": "BA SG",
+        "description": "Singapore Client TOBA"
+      }
+    ]
+  },
+  "questionnaireMapping": {
+    "description": "Mapping of role subtypes to questionnaire codes (lookup table)",
+    "mappings": [
+      {
+        "roleSub": "Intermediary",
+        "questionnaireCode": "Q_CLIENT_INTERMEDIARY"
+      },
+      {
+        "roleSub": "Direct",
+        "questionnaireCode": "Q_CLIENT_DIRECT"
+      },
+      {
+        "roleSub": "Reinsured",
+        "questionnaireCode": "Q_CLIENT_REINSURED"
+      },
+      {
+        "roleSub": "Individual",
+        "questionnaireCode": "Q_CLIENT_INDIVIDUAL"
+      }
+    ]
+  },
+  "countryRisk": {
+    "description": "Territorial Watch List - 204 countries classified as LOWER or HIGHER risk",
+    "source": "Ardonagh Specialty Territorial Watch List",
+    "totalCountries": 204,
+    "lowerCount": 68,
+    "higherCount": 136,
+    "defaultIfUnknown": "HIGHER",
+    "LOWER": [
+      "Anguilla",
+      "Australia",
+      "Austria",
+      "Bahamas",
+      "Bahrain",
+      "Barbados",
+      "Belgium",
+      "Bermuda",
+      "Bhutan",
+      "Botswana",
+      "Canada",
+      "Cabo Verde",
+      "Cayman Islands",
+      "Chile",
+      "Costa Rica",
+      "Cyprus",
+      "Czechia",
+      "Denmark",
+      "Dominica",
+      "Estonia",
+      "Falkland Islands",
+      "Fiji",
+      "Finland",
+      "France",
+      "Georgia",
+      "Germany",
+      "Gibraltar",
+      "Grenada",
+      "Guernsey",
+      "Hong Kong",
+      "Iceland",
+      "Ireland",
+      "Isle of Man",
+      "Israel",
+      "Italy",
+      "Japan",
+      "Jersey",
+      "Latvia",
+      "Lithuania",
+      "Luxembourg",
+      "Malaysia",
+      "Mauritius",
+      "Montserrat",
+      "Netherlands",
+      "New Zealand",
+      "Norway",
+      "Oman",
+      "Poland",
+      "Portugal",
+      "Qatar",
+      "Rwanda",
+      "Saint Lucia",
+      "Saint Vincent and the Grenadines",
+      "Saudi Arabia",
+      "Seychelles",
+      "Singapore",
+      "Slovenia",
+      "South Korea",
+      "Spain",
+      "Sweden",
+      "Switzerland",
+      "Taiwan",
+      "Turks and Caicos",
+      "United Arab Emirates",
+      "United Kingdom",
+      "Uruguay",
+      "United States of America",
+      "Virgin Islands (British)"
+    ],
+    "HIGHER_note": "Any country NOT in the LOWER list is classified as HIGHER risk. This includes but is not limited to: Afghanistan, Albania, Algeria, Angola, Argentina, Armenia, Azerbaijan, Bangladesh, Belarus, Belize, Benin, Bolivia, Bosnia, Brazil, Brunei, Bulgaria, Burkina Faso, Burundi, Cambodia, Cameroon, Central African Republic, Chad, China, Colombia, Comoros, Congo, Croatia, Cuba, DR Congo, Djibouti, Dominican Republic, Ecuador, Egypt, El Salvador, Equatorial Guinea, Eritrea, Eswatini, Ethiopia, Gabon, Gambia, Ghana, Greece, Guatemala, Guinea, Guinea-Bissau, Guyana, Haiti, Honduras, Hungary, India, Indonesia, Iran, Iraq, Jamaica, Jordan, Kazakhstan, Kenya, Kosovo, Kuwait, Kyrgyzstan, Laos, Lebanon, Lesotho, Liberia, Libya, Madagascar, Malawi, Maldives, Mali, Malta, Marshall Islands, Mauritania, Mexico, Moldova, Mongolia, Montenegro, Morocco, Mozambique, Myanmar, Namibia, Nauru, Nepal, Nicaragua, Niger, Nigeria, North Korea, North Macedonia, Pakistan, Palau, Palestine, Panama, Papua New Guinea, Paraguay, Peru, Philippines, Romania, Russia, Samoa, Sao Tome, Senegal, Serbia, Sierra Leone, Solomon Islands, Somalia, South Africa, South Sudan, Sri Lanka, Sudan, Suriname, Syria, Tajikistan, Tanzania, Thailand, Timor-Leste, Togo, Tonga, Trinidad and Tobago, Tunisia, Turkey, Turkmenistan, Tuvalu, Uganda, Ukraine, Uzbekistan, Vanuatu, Venezuela, Vietnam, Yemen, Zambia, Zimbabwe"
+  },
+  "documentSets": {
+    "DOC_CLIENT_LOW": {
+      "name": "Client - LOWER Risk (Standard CDD)",
+      "totalDocs": 8,
+      "mandatoryDocs": 8,
+      "optionalDocs": 0,
+      "automatedDocs": 2,
+      "documents": [
+        {
+          "documentName": "BE Form",
+          "mandatory": true,
+          "automated": false,
+          "notes": null
+        },
+        {
+          "documentName": "Evidence of TOBA Sent",
+          "mandatory": true,
+          "automated": false,
+          "notes": null
+        },
+        {
+          "documentName": "LexisNexis",
+          "mandatory": true,
+          "automated": false,
+          "notes": "Sanctions and PEP screening"
+        },
+        {
+          "documentName": "Evidence of Incorporation",
+          "mandatory": true,
+          "automated": true,
+          "notes": "Companies House"
+        },
+        {
+          "documentName": "Client Money Letter Confirmation and Document",
+          "mandatory": true,
+          "automated": false,
+          "notes": null
+        },
+        {
+          "documentName": "Bank Details",
+          "mandatory": true,
+          "automated": false,
+          "notes": null
+        },
+        {
+          "documentName": "Call Back",
+          "mandatory": true,
+          "automated": false,
+          "notes": "Not yet completed as new client/refresh"
+        },
+        {
+          "documentName": "Name and Address",
+          "mandatory": true,
+          "automated": true,
+          "notes": "Companies House"
+        }
+      ]
+    },
+    "DOC_CLIENT_HIGH": {
+      "name": "Client - HIGHER Risk (Enhanced CDD)",
+      "totalDocs": 16,
+      "mandatoryDocs": 15,
+      "optionalDocs": 1,
+      "automatedDocs": 2,
+      "documents": [
+        {
+          "documentName": "BE Form",
+          "mandatory": true,
+          "automated": false,
+          "notes": null
+        },
+        {
+          "documentName": "Evidence of TOBA Sent",
+          "mandatory": true,
+          "automated": false,
+          "notes": null
+        },
+        {
+          "documentName": "LexisNexis",
+          "mandatory": true,
+          "automated": false,
+          "notes": "Sanctions and PEP screening"
+        },
+        {
+          "documentName": "Evidence of Incorporation",
+          "mandatory": true,
+          "automated": true,
+          "notes": "Companies House"
+        },
+        {
+          "documentName": "Verification of Incorporation",
+          "mandatory": true,
+          "automated": false,
+          "notes": "delete as appropriate Audited Financial Statements, Articles of Association, Memorandum of Association, Bank Statement, Bank Letter, Tax Registration Certificate, or Explain Equivalent"
+        },
+        {
+          "documentName": "D and B Report",
+          "mandatory": true,
+          "automated": false,
+          "notes": "Credit and financial risk assessment"
+        },
+        {
+          "documentName": "Directors List",
+          "mandatory": true,
+          "automated": true,
+          "notes": "Companies House"
+        },
+        {
+          "documentName": "Sanctions Screening Evidence",
+          "mandatory": true,
+          "automated": false,
+          "notes": "Enhanced screening for higher risk jurisdiction"
+        },
+        {
+          "documentName": "Bank Statement",
+          "mandatory": true,
+          "automated": false,
+          "notes": "Source of funds verification"
+        },
+        {
+          "documentName": "Client Money Letter Confirmation and Document",
+          "mandatory": true,
+          "automated": false,
+          "notes": null
+        },
+        {
+          "documentName": "Confirmation of Identity/Address Section 1",
+          "mandatory": true,
+          "automated": false,
+          "notes": "delete as appropriate Passport or Experian can be used as equivalent for both Sections"
+        },
+        {
+          "documentName": "Confirmation of Identity/Address Section 2",
+          "mandatory": true,
+          "automated": false,
+          "notes": "delete as appropriate Bank Statement, Utility Bill, Tax Assessment Letter or Experian can be used as equivalent for both Sections"
+        },
+        {
+          "documentName": "If a PEP - Confirmation of Occupation/Position Held",
+          "mandatory": false,
+          "automated": false,
+          "notes": "Required only if entity or directors are PEPs"
+        },
+        {
+          "documentName": "Bank Details",
+          "mandatory": true,
+          "automated": false,
+          "notes": null
+        },
+        {
+          "documentName": "Call Back",
+          "mandatory": true,
+          "automated": false,
+          "notes": "Not yet completed as new client/refresh"
+        },
+        {
+          "documentName": "Name and Address",
+          "mandatory": true,
+          "automated": true,
+          "notes": "Companies House"
+        }
+      ]
+    },
+    "DOC_THIRD_PARTY": {
+      "name": "Third Party (Enhanced CDD)",
+      "totalDocs": 13,
+      "mandatoryDocs": 11,
+      "optionalDocs": 2,
+      "automatedDocs": 2,
+      "documents": [
+        {
+          "documentName": "BE Form",
+          "mandatory": true,
+          "automated": false,
+          "notes": null
+        },
+        {
+          "documentName": "Evidence of TOBA Sent",
+          "mandatory": true,
+          "automated": false,
+          "notes": null
+        },
+        {
+          "documentName": "LexisNexis",
+          "mandatory": true,
+          "automated": false,
+          "notes": "Sanctions and PEP screening"
+        },
+        {
+          "documentName": "Evidence of Incorporation",
+          "mandatory": true,
+          "automated": true,
+          "notes": "Companies House"
+        },
+        {
+          "documentName": "Verification of Incorporation",
+          "mandatory": true,
+          "automated": false,
+          "notes": "delete as appropriate Audited Financial Statements, Articles of Association, Memorandum of Association, Bank Statement, Bank Letter, Tax Registration Certificate, or Explain Equivalent"
+        },
+        {
+          "documentName": "D and B Report",
+          "mandatory": true,
+          "automated": false,
+          "notes": "Credit and financial risk assessment"
+        },
+        {
+          "documentName": "Directors List",
+          "mandatory": true,
+          "automated": true,
+          "notes": "Companies House"
+        },
+        {
+          "documentName": "Sanctions Screening Evidence",
+          "mandatory": true,
+          "automated": false,
+          "notes": "Required for all third parties"
+        },
+        {
+          "documentName": "Bank Details",
+          "mandatory": true,
+          "automated": false,
+          "notes": null
+        },
+        {
+          "documentName": "Call Back",
+          "mandatory": true,
+          "automated": false,
+          "notes": "Not yet completed as new client/refresh"
+        },
+        {
+          "documentName": "Third Party Authorisation Form",
+          "mandatory": false,
+          "automated": false,
+          "notes": "if applicable"
+        },
+        {
+          "documentName": "Key Account Evidence",
+          "mandatory": false,
+          "automated": false,
+          "notes": "if applicable"
+        },
+        {
+          "documentName": "Name and Address",
+          "mandatory": true,
+          "automated": true,
+          "notes": "Companies House"
+        }
+      ]
+    },
+    "DOC_UNDERWRITER_LOW": {
+      "name": "Underwriter - LOWER Risk (Standard CDD)",
+      "totalDocs": 12,
+      "mandatoryDocs": 11,
+      "optionalDocs": 1,
+      "automatedDocs": 3,
+      "documents": [
+        {
+          "documentName": "BE Form",
+          "mandatory": true,
+          "automated": false,
+          "notes": null
+        },
+        {
+          "documentName": "Rating",
+          "mandatory": true,
+          "automated": false,
+          "notes": null
+        },
+        {
+          "documentName": "Security Code",
+          "mandatory": true,
+          "automated": false,
+          "notes": null
+        },
+        {
+          "documentName": "TOBA",
+          "mandatory": true,
+          "automated": false,
+          "notes": null
+        },
+        {
+          "documentName": "LexisNexis",
+          "mandatory": true,
+          "automated": false,
+          "notes": "Sanctions and PEP screening"
+        },
+        {
+          "documentName": "Evidence of Incorporation",
+          "mandatory": true,
+          "automated": true,
+          "notes": "Companies House"
+        },
+        {
+          "documentName": "FCA Registration",
+          "mandatory": true,
+          "automated": true,
+          "notes": "FCA Register"
+        },
+        {
+          "documentName": "Bank Details",
+          "mandatory": true,
+          "automated": false,
+          "notes": null
+        },
+        {
+          "documentName": "Call Back",
+          "mandatory": true,
+          "automated": false,
+          "notes": null
+        },
+        {
+          "documentName": "Licence",
+          "mandatory": true,
+          "automated": false,
+          "notes": null
+        },
+        {
+          "documentName": "Xchanging Portal Document",
+          "mandatory": false,
+          "automated": false,
+          "notes": null
+        },
+        {
+          "documentName": "Name and Address",
+          "mandatory": true,
+          "automated": true,
+          "notes": "Companies House"
+        }
+      ]
+    },
+    "DOC_UNDERWRITER_HIGH": {
+      "name": "Underwriter - HIGHER Risk (Enhanced CDD)",
+      "totalDocs": 19,
+      "mandatoryDocs": 17,
+      "optionalDocs": 2,
+      "automatedDocs": 3,
+      "documents": [
+        {
+          "documentName": "BE Form",
+          "mandatory": true,
+          "automated": false,
+          "notes": null
+        },
+        {
+          "documentName": "Rating",
+          "mandatory": true,
+          "automated": false,
+          "notes": null
+        },
+        {
+          "documentName": "Security Code",
+          "mandatory": true,
+          "automated": false,
+          "notes": null
+        },
+        {
+          "documentName": "TOBA",
+          "mandatory": true,
+          "automated": false,
+          "notes": null
+        },
+        {
+          "documentName": "LexisNexis",
+          "mandatory": true,
+          "automated": false,
+          "notes": "Sanctions and PEP screening"
+        },
+        {
+          "documentName": "Evidence of Incorporation",
+          "mandatory": true,
+          "automated": true,
+          "notes": "Companies House"
+        },
+        {
+          "documentName": "Verification of Incorporation",
+          "mandatory": true,
+          "automated": false,
+          "notes": "delete as appropriate Audited Financial Statements, Articles of Association, Memorandum of Association, Bank Statement, Bank Letter, Tax Registration Certificate, or Explain Equivalent"
+        },
+        {
+          "documentName": "FCA Registration",
+          "mandatory": true,
+          "automated": true,
+          "notes": "FCA Register"
+        },
+        {
+          "documentName": "D and B Report",
+          "mandatory": true,
+          "automated": false,
+          "notes": "Credit and financial risk assessment"
+        },
+        {
+          "documentName": "Directors List",
+          "mandatory": true,
+          "automated": true,
+          "notes": "Companies House"
+        },
+        {
+          "documentName": "Sanctions Screening Evidence",
+          "mandatory": true,
+          "automated": false,
+          "notes": "Enhanced screening for higher risk jurisdiction"
+        },
+        {
+          "documentName": "Current Rating Evidence",
+          "mandatory": true,
+          "automated": false,
+          "notes": "If not rated need to obtain financial reports and perform a credit review"
+        },
+        {
+          "documentName": "Live Insurer Evidence - GXB Screenshot",
+          "mandatory": false,
+          "automated": false,
+          "notes": null
+        },
+        {
+          "documentName": "Bank Statement",
+          "mandatory": true,
+          "automated": false,
+          "notes": "Source of funds verification"
+        },
+        {
+          "documentName": "Bank Details",
+          "mandatory": true,
+          "automated": false,
+          "notes": null
+        },
+        {
+          "documentName": "Call Back",
+          "mandatory": true,
+          "automated": false,
+          "notes": null
+        },
+        {
+          "documentName": "Licence",
+          "mandatory": true,
+          "automated": false,
+          "notes": null
+        },
+        {
+          "documentName": "Xchanging Portal Document",
+          "mandatory": false,
+          "automated": false,
+          "notes": null
+        },
+        {
+          "documentName": "Name and Address",
+          "mandatory": true,
+          "automated": true,
+          "notes": "Companies House"
+        }
+      ]
+    }
+  },
+  "validationChecks": {
+    "description": "All automated validation checks performed during KYC enrichment",
+    "companiesHouseChecks": [
+      {
+        "checkCode": "CH_NAME_MATCH",
+        "description": "Verify intake legal name matches Companies House registered name",
+        "passCondition": "Names match ignoring case, punctuation, and Ltd/Limited variations",
+        "failCondition": "Names do not match or company not found",
+        "source": "CompanyAnalysisAgent",
+        "automated": true
+      },
+      {
+        "checkCode": "CH_FILING_CURRENT",
+        "description": "Verify company filings are up to date",
+        "passCondition": "Last accounts and confirmation statement both filed within 15 months",
+        "failCondition": "Either filing is overdue or older than 15 months",
+        "source": "CompanyAnalysisAgent",
+        "automated": true
+      },
+      {
+        "checkCode": "CH_ACTIVE",
+        "description": "Verify company status is active",
+        "passCondition": "Company status is 'active'",
+        "failCondition": "Company is dissolved, liquidated, or in administration",
+        "source": "CompanyAnalysisAgent",
+        "automated": true
+      },
+      {
+        "checkCode": "CH_DIRECTORS_PEP",
+        "description": "Screen directors and PSCs for PEP/sanctions risk based on nationality and country of residence",
+        "passCondition": "All active directors and PSCs from LOWER risk countries",
+        "failCondition": "Any director or PSC from HIGHER risk country or missing nationality data",
+        "source": "CompanyAnalysisAgent",
+        "automated": true
+      },
+      {
+        "checkCode": "CH_DIRECTORS_EXIST",
+        "description": "Verify company has at least one active director",
+        "passCondition": "At least 1 active director found",
+        "failCondition": "No active directors (possible shell company indicator)",
+        "source": "CompanyAnalysisAgent",
+        "automated": true
+      },
+      {
+        "checkCode": "CH_ADDRESS_MATCH",
+        "description": "Verify registered address country matches intake country",
+        "passCondition": "Address country matches intake jurisdiction",
+        "failCondition": "Address country does not match or address is missing",
+        "source": "CompanyAnalysisAgent",
+        "automated": true
+      }
+    ],
+    "fcaChecks": [
+      {
+        "checkCode": "FCA_REGULATED",
+        "description": "Verify firm is authorised or registered with the FCA",
+        "passCondition": "Firm status is 'Authorised' or 'Registered'",
+        "failCondition": "Firm not found, cancelled, revoked, or not authorised",
+        "source": "FCAAnalysisAgent",
+        "automated": true
+      },
+      {
+        "checkCode": "FCA_CLIENT_MONEY",
+        "description": "Verify firm's client money permission status",
+        "passCondition": "Firm has 'Hold and control client money' permission",
+        "failCondition": "Firm does not hold client money permission",
+        "source": "FCAAnalysisAgent",
+        "automated": true,
+        "note": "FAIL does not block - informational for risk assessment"
+      },
+      {
+        "checkCode": "FCA_NAME_MATCH",
+        "description": "Verify intake name matches FCA registered name",
+        "passCondition": "Names match ignoring case and Ltd/Limited variations",
+        "failCondition": "Names do not match - possible wrong FCA entity selected",
+        "source": "FCAAnalysisAgent",
+        "automated": true
+      }
+    ],
+    "riskChecks": [
+      {
+        "checkCode": "RISK_COUNTRY",
+        "description": "Assess country risk level from Territorial Watch List",
+        "passCondition": "Country classified as LOWER risk",
+        "failCondition": "Country classified as HIGHER risk or not found in list",
+        "source": "RulesEngineAgent",
+        "automated": true,
+        "note": "FAIL does not block - triggers enhanced CDD document set"
+      }
+    ],
+    "futureChecks": [
+      {
+        "checkCode": "DB_CREDIT_SCORE",
+        "description": "D&B credit score and financial risk assessment",
+        "source": "D&B API",
+        "status": "PLANNED",
+        "phase": 4
+      },
+      {
+        "checkCode": "LN_SANCTIONS",
+        "description": "LexisNexis sanctions and PEP screening",
+        "source": "LexisNexis API",
+        "status": "PLANNED",
+        "phase": 4
+      },
+      {
+        "checkCode": "CH_DIRECTORS_CROSS_FCA",
+        "description": "Cross-validate CH directors against FCA individuals",
+        "source": "CrossValidationAgent",
+        "status": "PLANNED",
+        "phase": 3
+      },
+      {
+        "checkCode": "CH_ADDRESS_CROSS_FCA",
+        "description": "Cross-validate CH registered address against FCA address",
+        "source": "CrossValidationAgent",
+        "status": "PLANNED",
+        "phase": 3
+      }
+    ]
+  },
+  "fcaEnrichment": {
+    "description": "FCA Register API endpoints and data collection configuration",
+    "proxyBase": "http://querydog.benjaminwootton.com:8091",
+    "directBase": "https://register.fca.org.uk/services/V0.1",
+    "activeEndpoints": [
+      {
+        "path": "/api/search?q={name}&type=firm",
+        "action": "FCA_Search",
+        "description": "Search FCA register by firm name"
+      },
+      {
+        "path": "/api/firm/{frn}",
+        "action": "FCA_GetFirmDetails",
+        "description": "Firm overview: status, client money, business type"
+      },
+      {
+        "path": "/api/firm/{frn}/permissions",
+        "action": "FCA_GetPermissions",
+        "description": "Authorised activities list"
+      },
+      {
+        "path": "/api/firm/{frn}/individuals",
+        "action": "FCA_GetIndividuals",
+        "description": "Key individuals with CF roles"
+      },
+      {
+        "path": "/api/firm/{frn}/address",
+        "action": "FCA_GetAddress",
+        "description": "FCA registered address"
+      }
+    ],
+    "plannedEndpoints": [
+      {
+        "path": "/api/firm/{frn}/requirements",
+        "description": "FCA requirements",
+        "phase": 2
+      },
+      {
+        "path": "/api/firm/{frn}/regulators",
+        "description": "Which regulators (FCA/PRA)",
+        "phase": 2
+      },
+      {
+        "path": "/api/firm/{frn}/disciplinary",
+        "description": "Disciplinary history",
+        "phase": 2
+      },
+      {
+        "path": "/api/firm/{frn}/passports",
+        "description": "Passporting rights (EEA)",
+        "phase": 3
+      },
+      {
+        "path": "/api/firm/{frn}/waivers",
+        "description": "Regulatory waivers",
+        "phase": 3
+      },
+      {
+        "path": "/api/firm/{frn}/names",
+        "description": "Trading names",
+        "phase": 2
+      }
+    ],
+    "combinedEndpoint": {
+      "path": "/api/firm/{frn}/all",
+      "description": "Combined endpoint returning all FCA data in one call (like CH proxy pattern)",
+      "status": "REQUESTED",
+      "note": "Ask Ben to implement - reduces 4 HTTP calls to 1"
+    }
+  },
+  "companiesHouseEnrichment": {
+    "description": "Companies House API endpoints and data collection configuration",
+    "proxyBase": "http://querydog.benjaminwootton.com:8091",
+    "directBase": "https://api.company-information.service.gov.uk",
+    "authHeader": "Authorization: Basic MWIyNWY0NDMtZDQ5My00MTNmLWIzY2EtZjYwMDU5YWVkNTgx",
+    "endpoints": [
+      {
+        "path": "/search/companies?q={name}",
+        "action": "CompanyHouse_nameSearch",
+        "description": "Search CH by company name",
+        "source": "direct"
+      },
+      {
+        "path": "/api/companies/{number}",
+        "action": "CompanyHouse_GetProfile",
+        "description": "Full profile + officers + filing_history + PSC",
+        "source": "proxy"
+      }
+    ],
+    "documentDownload": {
+      "baseUrl": "https://document-api.company-information.service.gov.uk/document/{id}/content",
+      "authRequired": true,
+      "note": "Requires API key in Authorization header"
+    }
+  },
+  "goldenRecordSchema": {
+    "description": "MongoDB golden record - 18 top-level keys required",
+    "mongoCollection": "kyc_cases",
+    "requiredFields": [
+      "caseId",
+      "clientRef",
+      "status"
+    ],
+    "topLevelKeys": [
+      "caseId",
+      "clientRef",
+      "status",
+      "version",
+      "entity",
+      "relationship",
+      "role",
+      "rulesOutcome",
+      "documents",
+      "flags",
+      "approvals",
+      "decision",
+      "changeHistory",
+      "audit",
+      "enrichment",
+      "validationChecks",
+      "blobStorage",
+      "vantageUrl"
+    ],
+    "statusValues": [
+      "DRAFT",
+      "PENDING_REVIEW",
+      "APPROVED",
+      "REJECTED",
+      "EXPIRED"
+    ],
+    "enrichmentSources": {
+      "companiesHouse": {
+        "status": "ACTIVE",
+        "phase": 1
+      },
+      "fca": {
+        "status": "ACTIVE",
+        "phase": 1
+      },
+      "rules": {
+        "status": "ACTIVE",
+        "phase": 1
+      },
+      "dAndB": {
+        "status": "PLANNED",
+        "phase": 4
+      },
+      "lexisNexis": {
+        "status": "PLANNED",
+        "phase": 4
+      }
+    }
+  },
+  "workflowMetadata": {
+    "currentVersion": "V5-FCA-v2",
+    "totalActions": 42,
+    "agents": [
+      {
+        "name": "EmailProcessing_Agent",
+        "purpose": "Extract structured data from KYC intake email"
+      },
+      {
+        "name": "CompanyHouseAgent",
+        "purpose": "Search Companies House for entity match"
+      },
+      {
+        "name": "CompanyAnalysisAgent",
+        "purpose": "Deep analysis of CH profile, directors, PSC, accounts"
+      },
+      {
+        "name": "FilingDocumentsAgent",
+        "purpose": "Catalog all CH filing documents with download URLs"
+      },
+      {
+        "name": "FCASelectionAgent",
+        "purpose": "Match entity to FCA register, extract FRN"
+      },
+      {
+        "name": "FCAAnalysisAgent",
+        "purpose": "Analyze firm details, permissions, individuals, address"
+      },
+      {
+        "name": "RulesEngineAgent",
+        "purpose": "Determine risk profile and document set from rules matrix"
+      },
+      {
+        "name": "DraftEmailAgent",
+        "purpose": "Generate BE pack HTML email with all enrichment data"
+      }
+    ],
+    "httpCalls": [
+      {
+        "name": "CompanyHouse_nameSearch",
+        "type": "GET",
+        "target": "Companies House Direct API"
+      },
+      {
+        "name": "CompanyHouse_GetProfile",
+        "type": "GET",
+        "target": "QueryDog CH Proxy"
+      },
+      {
+        "name": "FCA_Search",
+        "type": "GET",
+        "target": "FCA Register Direct API"
+      },
+      {
+        "name": "FCA_GetFirmDetails",
+        "type": "GET",
+        "target": "QueryDog FCA Proxy"
+      },
+      {
+        "name": "FCA_GetPermissions",
+        "type": "GET",
+        "target": "QueryDog FCA Proxy"
+      },
+      {
+        "name": "FCA_GetIndividuals",
+        "type": "GET",
+        "target": "QueryDog FCA Proxy"
+      },
+      {
+        "name": "FCA_GetAddress",
+        "type": "GET",
+        "target": "QueryDog FCA Proxy"
+      },
+      {
+        "name": "BensMongo-Insert",
+        "type": "POST",
+        "target": "MongoDB API"
+      }
+    ],
+    "model": "GPT-4.1 via Azure AI Foundry"
+  }
+}

@@ -63,6 +63,7 @@ export default function CaseDetailPage() {
     const [showPasJson, setShowPasJson] = useState(false)
     const [pasJsonData, setPasJsonData] = useState<any>(null)
     const [isConvertingToPas, setIsConvertingToPas] = useState(false)
+    const [showGoldenRecord, setShowGoldenRecord] = useState(false)
 
     // Safe date formatter
     const formatDate = (dateString: string | null | undefined, formatStr: string = 'MMM dd, yyyy'): string | null => {
@@ -242,6 +243,14 @@ export default function CaseDetailPage() {
                                 </AlertDialogFooter>
                             </AlertDialogContent>
                         </AlertDialog>
+
+                        <Button
+                            variant="outline"
+                            onClick={() => setShowGoldenRecord(true)}
+                            className="shadow-sm border-yellow-400 text-yellow-700 hover:bg-yellow-50 hover:border-yellow-500"
+                        >
+                            🏆 View Golden Record
+                        </Button>
                     </div>
                 </div>
             </div>
@@ -595,6 +604,15 @@ export default function CaseDetailPage() {
                 title="PAS Client Process JSON"
                 description="This is the generated PAS format for this KYC record"
                 data={pasJsonData}
+            />
+
+            {/* Golden Record Viewer Dialog */}
+            <JsonViewerDialog
+                open={showGoldenRecord}
+                onOpenChange={setShowGoldenRecord}
+                title="🏆 Golden Record"
+                description="Raw MongoDB record for this KYC case"
+                data={caseDetail}
             />
         </div>
     )

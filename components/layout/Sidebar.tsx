@@ -13,7 +13,8 @@ import {
     Package,
     Zap,
     Users,
-    ShieldCheck
+    ShieldCheck,
+    BookOpen
 } from "lucide-react"
 
 const menuItems = [
@@ -28,6 +29,12 @@ const menuItems = [
         title: "Testing - Third Party APIs",
         items: [
             { name: "API Test Harness", href: "/api-testing", icon: Zap },
+        ]
+    },
+    {
+        title: "Configuration",
+        items: [
+            { name: "Business Rules", href: "/business-rules", icon: BookOpen },
         ]
     },
     // {

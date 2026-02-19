@@ -56,7 +56,7 @@ export default function RootLayout({
 
             {/* Main Content Area - with left margin for sidebar */}
             <main className="ml-64 mt-16 flex-1 bg-gradient-to-br from-gray-50 to-gray-100">
-              <div className="max-w-7xl mx-auto px-6 py-8">
+              <div className="px-6 py-8">
                 {children}
               </div>
             </main>

@@ -59,13 +59,13 @@ export function CasesTable({ cases, isLoading, onSort, sortBy, sortOrder }: Case
                 <Table>
                     <TableHeader>
                         <TableRow className="bg-muted/30">
-                            <TableHead className="w-[140px] font-semibold">Case ID</TableHead>
+                            <TableHead className="w-[120px] font-semibold">Case ID</TableHead>
                             <TableHead className="font-semibold">Entity Name</TableHead>
                             <TableHead className="font-semibold">Business Unit</TableHead>
-                            <TableHead className="w-[140px] font-semibold">Risk Tier</TableHead>
-                            <TableHead className="w-[200px] font-semibold">Status</TableHead>
-                            <TableHead className="w-[160px] font-semibold">Assigned To</TableHead>
-                            <TableHead className="w-[140px] text-right font-semibold">Actions</TableHead>
+                            <TableHead className="w-[110px] font-semibold">Risk Tier</TableHead>
+                            <TableHead className="w-[170px] font-semibold">Status</TableHead>
+                            <TableHead className="w-[130px] font-semibold">Assigned To</TableHead>
+                            <TableHead className="w-[120px] text-right font-semibold">Actions</TableHead>
                         </TableRow>
                     </TableHeader>
                     <TableBody>
@@ -91,7 +91,7 @@ export function CasesTable({ cases, isLoading, onSort, sortBy, sortOrder }: Case
             <Table>
                 <TableHeader>
                     <TableRow className="bg-muted/30 hover:bg-muted/40">
-                        <TableHead className="w-[140px] font-semibold">
+                        <TableHead className="w-[120px] font-semibold">
                             <div className="flex items-center gap-2">
                                 <FileText className="h-4 w-4 text-muted-foreground" />
                                 Case ID
@@ -106,19 +106,19 @@ export function CasesTable({ cases, isLoading, onSort, sortBy, sortOrder }: Case
                                 Business Unit
                             </div>
                         </TableHead>
-                        <TableHead className="w-[140px] font-semibold">
+                        <TableHead className="w-[110px] font-semibold">
                             <SortButton field="riskTier">Risk Tier</SortButton>
                         </TableHead>
-                        <TableHead className="w-[200px] font-semibold">
+                        <TableHead className="w-[170px] font-semibold">
                             <SortButton field="status">Status</SortButton>
                         </TableHead>
-                        <TableHead className="w-[160px] font-semibold">
+                        <TableHead className="w-[130px] font-semibold">
                             <div className="flex items-center gap-2">
                                 <User className="h-4 w-4 text-muted-foreground" />
                                 Assigned To
                             </div>
                         </TableHead>
-                        <TableHead className="w-[140px] text-right font-semibold">Actions</TableHead>
+                        <TableHead className="w-[120px] text-right font-semibold">Actions</TableHead>
                     </TableRow>
                 </TableHeader>
                 <TableBody>
