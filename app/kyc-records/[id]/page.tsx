@@ -196,6 +196,15 @@ export default function CaseDetailPage() {
                                 <div className="flex items-center gap-2 text-sm text-muted-foreground mt-1">
                                     <span className="font-mono">Case ID: {caseDetail.caseId || caseDetail._id?.substring(0, 12)}</span>
                                     {caseDetail.clientRef && <span>• Client Ref: {caseDetail.clientRef}</span>}
+                                    {formatDate(caseDetail.createdAt) && (
+                                        <>
+                                            <span>•</span>
+                                            <span className="flex items-center gap-1">
+                                                <Calendar className="h-3.5 w-3.5" />
+                                                Created: {formatDate(caseDetail.createdAt)}
+                                            </span>
+                                        </>
+                                    )}
                                 </div>
                             </div>
                         </div>

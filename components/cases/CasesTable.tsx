@@ -14,8 +14,9 @@ import { CaseListItem } from "@/lib/api/client"
 import { StatusBadge } from "./StatusBadge"
 import { RiskTierBadge } from "./RiskTierBadge"
 import { useRouter } from "next/navigation"
-import { ArrowUpDown, ArrowUp, ArrowDown, Eye, Edit2, Building2, User, FileText } from "lucide-react"
+import { ArrowUpDown, ArrowUp, ArrowDown, Eye, Edit2, Building2, User, FileText, Calendar } from "lucide-react"
 import { cn } from "@/lib/utils"
+import { format } from "date-fns"
 
 interface CasesTableProps {
     cases: CaseListItem[]
@@ -60,6 +61,7 @@ export function CasesTable({ cases, isLoading, onSort, sortBy, sortOrder }: Case
                     <TableHeader>
                         <TableRow className="bg-muted/30">
                             <TableHead className="w-[120px] font-semibold">Case ID</TableHead>
+                            <TableHead className="w-[120px] font-semibold">Created</TableHead>
                             <TableHead className="font-semibold">Entity Name</TableHead>
                             <TableHead className="font-semibold">Business Unit</TableHead>
                             <TableHead className="w-[110px] font-semibold">Risk Tier</TableHead>
@@ -71,6 +73,7 @@ export function CasesTable({ cases, isLoading, onSort, sortBy, sortOrder }: Case
                     <TableBody>
                         {[...Array(5)].map((_, i) => (
                             <TableRow key={i}>
+                                <TableCell><Skeleton className="h-5 w-24" /></TableCell>
                                 <TableCell><Skeleton className="h-5 w-24" /></TableCell>
                                 <TableCell><Skeleton className="h-5 w-40" /></TableCell>
                                 <TableCell><Skeleton className="h-5 w-32" /></TableCell>
@@ -96,6 +99,9 @@ export function CasesTable({ cases, isLoading, onSort, sortBy, sortOrder }: Case
                                 <FileText className="h-4 w-4 text-muted-foreground" />
                                 Case ID
                             </div>
+                        </TableHead>
+                        <TableHead className="w-[120px] font-semibold">
+                            <SortButton field="createdAt">Created</SortButton>
                         </TableHead>
                         <TableHead className="font-semibold">
                             <SortButton field="entityName">Entity Name</SortButton>
@@ -124,7 +130,7 @@ export function CasesTable({ cases, isLoading, onSort, sortBy, sortOrder }: Case
                 <TableBody>
                     {cases.length === 0 ? (
                         <TableRow>
-                            <TableCell colSpan={7} className="h-32 text-center">
+                            <TableCell colSpan={8} className="h-32 text-center">
                                 <div className="flex flex-col items-center justify-center text-muted-foreground">
                                     <FileText className="h-12 w-12 mb-2 opacity-20" />
                                     <p className="font-medium">No cases found</p>
@@ -143,6 +149,19 @@ export function CasesTable({ cases, isLoading, onSort, sortBy, sortOrder }: Case
                                     <div className="flex items-center gap-2">
                                         <span className="text-primary">{c.id.substring(0, 8)}</span>
                                         <span className="text-muted-foreground">...</span>
+                                    </div>
+                                </TableCell>
+                                <TableCell className="text-sm text-muted-foreground">
+                                    <div className="flex items-center gap-1">
+                                        <Calendar className="h-3.5 w-3.5 shrink-0" />
+                                        <span>
+                                            {c.createdAt ? (() => {
+                                                try {
+                                                    const d = new Date(c.createdAt)
+                                                    return isNaN(d.getTime()) ? '—' : format(d, 'dd MMM yyyy')
+                                                } catch { return '—' }
+                                            })() : '—'}
+                                        </span>
                                     </div>
                                 </TableCell>
                                 <TableCell className="font-medium">
